@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mogu.GEMAKER.dao.mapper.DataDoMapper" >
+
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.DataDo" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="sensor" property="sensor" jdbcType="BIGINT" />
+        <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+        <association property="deviceType"  javaType="com.mogu.GEMAKER.entity.DeviceTypeDo">
+            <id column="device_type_id"  property="id"/>
+            <result column="device_type_code" property="code"/>
+            <result column="device_type_name" property="name"/>
+        </association>
+        <association property="dataType"  javaType="com.mogu.GEMAKER.entity.DataTypeDo">
+            <id column="data_type_id"  property="id"/>
+            <result column="data_type_code" property="code"/>
+            <result column="data_type_name" property="name"/>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, sensor, device_type, data_type, last_time
+    </sql>
+
+
+
+    <insert id="register" parameterType="com.mogu.GEMAKER.entity.DataDo" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into tbl_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sensor != null" >
+                sensor,
+            </if>
+            <if test="deviceType != null" >
+                device_type,
+            </if>
+            <if test="dataType != null" >
+                data_type,
+            </if>
+            <if test="lastTime != null" >
+                last_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sensor != null" >
+                #{sensor,jdbcType=BIGINT},
+            </if>
+            <if test="deviceType != null" >
+                #{deviceType.id,jdbcType=INTEGER},
+            </if>
+            <if test="dataType != null" >
+                #{dataType.id,jdbcType=INTEGER},
+            </if>
+            <if test="lastTime != null" >
+                #{lastTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="lst" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        d.id, d.sensor, d.last_time,device.id as device_type_id,device.code as device_type_code,device.name as device_type_name ,`data`.id as data_type_id ,`data`.code as data_type_code,`data`.name as data_type_name
+        from tbl_data d
+        LEFT JOIN tbl_type device on d.device_type = device.id
+        LEFT JOIN tbl_type `data` on d.data_type = `data`.id
+        where sensor = #{sensor,jdbcType=BIGINT}
+    </select>
+
+
+
+    <delete id="delete" parameterType="com.mogu.GEMAKER.entity.DataDo">
+        DELETE  FROM tbl_data where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        d.id, d.sensor, d.last_time,device.id as device_type_id,device.code as device_type_code,device.name as device_type_name ,`data`.id as data_type_id ,`data`.code as data_type_code,`data`.name as data_type_name
+        from tbl_data d
+        LEFT JOIN tbl_type device on d.device_type = device.id
+        LEFT JOIN tbl_type `data` on d.data_type = `data`.id
+        where d.id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <update id="update" parameterType="com.mogu.GEMAKER.entity.DataDo" >
+        update tbl_data
+        <set >
+            <if test="deviceType != null" >
+                device_type = #{deviceType.id},
+            </if>
+            <if test="lastTime != null" >
+                last_time = #{lastTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dataType != null" >
+                data_type = #{dataType.id,jdbcType=BIGINT}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

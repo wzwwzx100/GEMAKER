@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GEMAKER.iml" filepath="$PROJECT_DIR$/GEMAKER.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GEMAKER_Api/GEMAKER_Api.iml" filepath="$PROJECT_DIR$/GEMAKER_Api/GEMAKER_Api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GEMAKER_Dao/GEMAKER_Dao.iml" filepath="$PROJECT_DIR$/GEMAKER_Dao/GEMAKER_Dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GEMAKER_Model/GEMAKER_Model.iml" filepath="$PROJECT_DIR$/GEMAKER_Model/GEMAKER_Model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GEMAKER_Service/GEMAKER_Service.iml" filepath="$PROJECT_DIR$/GEMAKER_Service/GEMAKER_Service.iml" />
+    </modules>
+  </component>
+</project>

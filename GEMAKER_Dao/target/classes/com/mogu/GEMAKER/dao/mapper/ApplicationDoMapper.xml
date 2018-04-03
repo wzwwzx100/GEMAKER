@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mogu.GEMAKER.dao.mapper.ApplicationDoMapper" >
+
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.ApplicationDo" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="retry" property="retry" jdbcType="INTEGER" />
+        <result column="company" property="company" jdbcType="VARCHAR" />
+        <result column="contact" property="contact" jdbcType="VARCHAR" />
+        <result column="tel" property="tel" jdbcType="VARCHAR" />
+        <result column="valid" property="valid" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <insert id="save" parameterType="com.mogu.GEMAKER.entity.ApplicationDo" >
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into tbl_application
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="name != null" >
+                `name`,
+            </if>
+            <if test="address != null" >
+                `address`,
+            </if>
+            <if test="retry != null" >
+                `retry`,
+            </if>
+            <if test="company != null" >
+                `company`,
+            </if>
+            <if test="contact != null" >
+                `contact`,
+            </if>
+            <if test="tel != null" >
+                `tel`,
+            </if>
+            <if test="valid != null" >
+                `valid`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="retry != null" >
+                #{retry,jdbcType=INTEGER},
+            </if>
+            <if test="company != null" >
+                #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null" >
+                #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="valid != null" >
+                #{valid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+
+    <delete id="delete" parameterType="com.mogu.GEMAKER.entity.ApplicationDo">
+        DELETE  FROM tbl_application where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <update id="update" parameterType="com.mogu.GEMAKER.entity.ApplicationDo">
+        update tbl_application
+        <set >
+            <if test="name != null" >
+                `name` = #{name},
+            </if>
+            <if test="address != null" >
+                address = #{address},
+            </if>
+            <if test="retry != null" >
+                retry = #{retry},
+            </if>
+            <if test="company != null" >
+                company = #{company},
+            </if>
+            <if test="contact != null" >
+                contact = #{contact},
+            </if>
+            <if test="tel != null" >
+                tel = #{tel},
+            </if>
+            <if test="valid != null" >
+                valid = #{valid},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="get" resultMap="BaseResultMap">
+        select * from tbl_application where id = #{id,jdbcType=INTEGER};
+    </select>
+</mapper>
