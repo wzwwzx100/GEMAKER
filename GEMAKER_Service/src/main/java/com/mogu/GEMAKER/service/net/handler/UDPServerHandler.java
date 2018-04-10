@@ -3,6 +3,7 @@ package com.mogu.GEMAKER.service.net.handler;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mogu.GEMAKER.constants.CommonConstant;
 import com.mogu.GEMAKER.entity.*;
@@ -87,6 +88,36 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
             }
             try {
                 messageDo = mapper.readValue(ss, MessageDo.class);
+            }catch (Exception e){
+                //异常1、JSON格式错误
+                log.error(e.getMessage(), e);
+                log.error("异常1、JSON格式错误");
+                Map<String, Integer> msg = new HashMap<String, Integer>();
+                msg.put("err", 1);
+                returnMsg.setSv(1);
+                returnMsg.setCv(1);
+                returnMsg.setSq(0l);
+                returnMsg.setMid("1992");
+                returnMsg.setSign("");
+                returnMsg.setMsg(mapper.writeValueAsString(msg));
+                msg = null;
+                //step 2.保存消息记录1
+                MsgInfoDo msgInfoDo = new MsgInfoDo();
+                msgInfoDo.setAtTime(new Date());
+                msgInfoDo.setLife(-1);
+                msgInfoDo.setTerminalId("000000000000");
+                msgInfoDo.setJsonText(mapper.writeValueAsString(returnMsg));
+                msgInfoDo.setMsg(returnMsg.getMsg());
+                msgInfoDo.setMsgCode("1992");
+                msgInfoDo.setMsgCodeName("平台回复交易异常");
+                msgInfoDo.setSq(0l);
+                msgInfoDo.setPrivateMsg(returnMsg.getMsg());
+                msgInfoDo.setMsgType(1);
+                messageService.addMessage(msgInfoDo);
+                msgInfoDo = null;
+                final_string += mapper.writeValueAsString(returnMsg)+"###";
+                break OUT;
+            }
                 //参数是否完全验证
                 if(!messageDo.lessAttr()){
                     returnMsg.setSq(messageDo.getSq());
@@ -530,6 +561,7 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                     returnMsg.setMid("1992");
                     returnMsg.setSign("");
                     msg = null;
+
                 }
             }else{
                 //异常7：缺少参数
@@ -539,20 +571,6 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                 returnMsg.setMid("1992");
                 returnMsg.setSign("");
                 returnMsg.setSq(0l);
-                returnMsg.setMsg(mapper.writeValueAsString(msg));
-                msg = null;
-            }
-
-            }catch(JsonParseException e){
-                //异常1、JSON格式错误
-                log.error(e.getMessage(), e);
-                Map<String, Integer> msg = new HashMap<String, Integer>();
-                msg.put("err", 1);
-                returnMsg.setSv(1);
-                returnMsg.setCv(1);
-                returnMsg.setSq(0l);
-                returnMsg.setMid("1992");
-                returnMsg.setSign("");
                 returnMsg.setMsg(mapper.writeValueAsString(msg));
                 msg = null;
             }

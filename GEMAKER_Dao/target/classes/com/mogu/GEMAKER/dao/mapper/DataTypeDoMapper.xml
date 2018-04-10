@@ -8,6 +8,7 @@
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="direction" property="direction" jdbcType="INTEGER" />
         <result column="clazz" property="clazz" jdbcType="INTEGER" />
+
     </resultMap>
 
 
@@ -27,8 +28,9 @@
                 direction,
             </if>
             <if test="clazz != null" >
-                clazz
+                clazz,
             </if>
+
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
         <if test="code != null" >
@@ -43,6 +45,7 @@
         <if test="clazz != null" >
             #{clazz,jdbcType=INTEGER},
         </if>
+
         </trim>
     </insert>
 
@@ -56,7 +59,7 @@
                 `name`=#{name,jdbcType=VARCHAR},
             </if>
             <if test="direction != null" >
-                direction=#{direction,jdbcType=INTEGER},
+                direction=#{direction,jdbcType=INTEGER}
             </if>
         </set>
         WHERE id=#{id,jdbcType=INTEGER}

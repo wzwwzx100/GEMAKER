@@ -16,4 +16,5 @@ com\mogu\GEMAKER\api\action\ResultCtrl.class
 com\mogu\GEMAKER\api\listener\UDPListener$1.class
 com\mogu\GEMAKER\api\PlanTask\TaskTimeoutEndJob.class
 com\mogu\GEMAKER\api\action\DeviceCtrl.class
+com\mogu\GEMAKER\api\action\Test.class
 com\mogu\GEMAKER\api\interceptor\GlobalRequestInterceptor.class

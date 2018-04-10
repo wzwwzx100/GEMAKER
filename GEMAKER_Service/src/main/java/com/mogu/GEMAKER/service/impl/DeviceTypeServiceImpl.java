@@ -52,7 +52,7 @@ public class DeviceTypeServiceImpl implements BaseTypeService {
         if(pageNum == null || pageSize == null){
             return BizResult.success(deviceTypeDoMapper.lst(null));
         }
-        String orderBy = "id asc";
+        String orderBy = "id desc";
         PageHelper.startPage(pageNum,pageSize,orderBy);
         List<BaseTypeDo> lst = deviceTypeDoMapper.lst(baseTypeDo);
         PageInfo pageInfo = new PageInfo(lst);

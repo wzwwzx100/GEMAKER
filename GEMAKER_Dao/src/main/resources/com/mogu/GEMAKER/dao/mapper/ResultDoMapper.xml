@@ -48,6 +48,7 @@
             <id column="device_type_id"  property="id"/>
             <result column="device_type_code" property="code"/>
             <result column="device_type_name" property="name"/>
+            <result column="device_type_graph" property="graph"/>
         </association>
         <association property="dataType"  javaType="com.mogu.GEMAKER.entity.DataTypeDo">
             <id column="data_type_id"  property="id"/>
@@ -70,7 +71,7 @@
 
     <select id="queryData" resultMap="DataResultMap" >
         select
-        d.id, d.sensor, d.last_time,device.id as device_type_id,device.code as device_type_code,device.name as device_type_name ,`data`.id as data_type_id ,`data`.code as data_type_code,`data`.name as data_type_name
+        d.id, d.sensor, d.last_time,device.id as device_type_id,device.code as device_type_code,device.graph as device_type_graph, device.name as device_type_name ,`data`.id as data_type_id ,`data`.code as data_type_code,`data`.name as data_type_name
         from tbl_data d
         LEFT JOIN tbl_type device on d.device_type = device.id
         LEFT JOIN tbl_type `data` on d.data_type = `data`.id

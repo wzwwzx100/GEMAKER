@@ -8,6 +8,7 @@
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="direction" property="direction" jdbcType="INTEGER" />
         <result column="clazz" property="clazz" jdbcType="INTEGER" />
+        <result column="graph" property="graph" jdbcType="INTEGER" />
     </resultMap>
 
 
@@ -24,7 +25,10 @@
                 `name`,
             </if>
             <if test="clazz != null" >
-                clazz
+                clazz,
+            </if>
+            <if test="graph != null" >
+                graph,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -40,6 +44,9 @@
             <if test="clazz != null" >
                 #{clazz,jdbcType=INTEGER},
             </if>
+            <if test="graph != null" >
+                #{graph,jdbcType=INTEGER},
+            </if>
         </trim>
     </insert>
 
@@ -52,6 +59,9 @@
             <if test="name != null" >
                 `name`=#{name,jdbcType=VARCHAR},
             </if>
+            <if test="graph != null" >
+                graph=#{graph,jdbcType=INTEGER}
+            </if>
         </set>
         WHERE id=#{id,jdbcType=INTEGER}
     </update>
@@ -63,7 +73,7 @@
 
 
     <select id="lst" resultMap="BaseResultMap">
-        SELECT id,code,`name` FROM tbl_type WHERE clazz = 3
+        SELECT * FROM tbl_type WHERE clazz = 3
         <if test="code != null">
             AND (code like #{code} or `name` like #{code})
         </if>

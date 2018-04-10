@@ -4,6 +4,7 @@ public class DataTypeDo extends BaseTypeDo{
     private int direction;
 
 
+
     public int getDirection() {
         return direction;
     }
