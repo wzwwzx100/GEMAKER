@@ -95,7 +95,7 @@ public class CommandServiceImpl implements CommandService{
             messageService.addMessage(msgInfoDo);
             // step 3 发送消息
             log.info("start sending command :"+commandDo.getId());
-            udp.run(commandDo.getId(),jsonText+"###");
+//            udp.run(commandDo.getId(),jsonText+"###");
         } catch (JsonProcessingException e) {
             log.error(e.getMessage(),e);
             return BizResult.error();
