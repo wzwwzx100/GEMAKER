@@ -3,15 +3,12 @@ package com.mogu.GEMAKER.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mogu.GEMAKER.dao.mapper.MessageDoMapper;
-import com.mogu.GEMAKER.dao.mapper.TerminalDoMapper;
-import com.mogu.GEMAKER.entity.MessageParam;
-import com.mogu.GEMAKER.entity.MsgInfoDo;
-import com.mogu.GEMAKER.entity.TerminalDo;
+import com.mogu.GEMAKER.model.params.MessageParam;
+import com.mogu.GEMAKER.model.entity.MsgInfoDo;
 import com.mogu.GEMAKER.service.MessageService;
 import com.mogu.GEMAKER.util.BizResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

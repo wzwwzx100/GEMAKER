@@ -1,10 +1,11 @@
 package com.mogu.GEMAKER.api.action;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.mogu.GEMAKER.entity.DataDo;
-import com.mogu.GEMAKER.entity.SensorDo;
-import com.mogu.GEMAKER.entity.TerminalDo;
-import com.mogu.GEMAKER.entity.TerminalParam;
+import com.mogu.GEMAKER.model.entity.DataDo;
+import com.mogu.GEMAKER.model.entity.SensorDo;
+import com.mogu.GEMAKER.model.entity.TerminalDo;
+import com.mogu.GEMAKER.model.params.DowndataParam;
+import com.mogu.GEMAKER.model.params.SwitchParam;
+import com.mogu.GEMAKER.model.params.TerminalParam;
 import com.mogu.GEMAKER.service.DataService;
 import com.mogu.GEMAKER.service.ResultService;
 import com.mogu.GEMAKER.service.SensorService;
@@ -196,6 +197,44 @@ public class DeviceCtrl extends  BaseCtrl{
     @RequestMapping(value = "device/issueConfig",method = RequestMethod.POST)
     public WebResult issueConfig(@RequestBody TerminalDo terminalDo){
         return  new WebResult(terminalService.issueConfig(terminalDo));
+    }
+
+    /**
+     * 下发开关信息
+     * @return
+     */
+    @RequestMapping(value = "device/switch",method = RequestMethod.POST)
+    public WebResult switcher(@RequestBody SwitchParam switchParam){
+        return  new WebResult(terminalService.switcher(switchParam));
+    }
+
+
+    /**
+     * 下发数据
+     * @return
+     */
+    @RequestMapping(value = "device/downdata",method = RequestMethod.POST)
+    public WebResult downdata(@RequestBody DowndataParam switchParam){
+        return  new WebResult(terminalService.downdata(switchParam));
+    }
+
+
+    /**
+     * 数据列表
+     * @return
+     */
+    @RequestMapping(value = "device/lstdata",method = RequestMethod.POST)
+    public WebResult lstdata(@RequestBody TerminalDo terminalDo){
+        return  new WebResult(terminalService.lstdata(terminalDo));
+    }
+
+    /**
+     * 下发
+     * @return
+     */
+    @RequestMapping(value = "device/sendTest",method = RequestMethod.POST)
+    public WebResult testSend(@RequestBody TerminalDo terminalDo){
+        return  new WebResult(terminalService.testSend(terminalDo));
     }
 
 

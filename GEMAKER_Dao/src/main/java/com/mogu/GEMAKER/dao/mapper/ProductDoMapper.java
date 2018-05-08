@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.ProductDo;
+import com.mogu.GEMAKER.model.entity.ProductDo;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

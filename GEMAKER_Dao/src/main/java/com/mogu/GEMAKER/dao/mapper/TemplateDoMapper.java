@@ -1,17 +1,20 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.TemplateDo;
+import com.mogu.GEMAKER.model.entity.TemplateDo;
 import com.mogu.GEMAKER.util.BizResult;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface TemplateDoMapper {
 
-    BizResult add(TemplateDo templateDo);
+    int add(TemplateDo templateDo);
 
-    BizResult del(TemplateDo templateDo);
+    int del(TemplateDo templateDo);
 
-    BizResult get(TemplateDo templateDo);
+    TemplateDo get(TemplateDo templateDo);
 
-    BizResult modify(TemplateDo templateDo);
+    int modify(TemplateDo templateDo);
 
-    BizResult lst();
+    List<TemplateDo> lst();
 }

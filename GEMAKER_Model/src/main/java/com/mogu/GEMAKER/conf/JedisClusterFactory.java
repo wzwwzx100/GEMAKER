@@ -46,9 +46,9 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
             haps.add(new HostAndPort(arr[0], Integer.valueOf(arr[1])));
         }
         System.out.println("初始化jedis完成!");
-//        if (StringUtils.isNotEmpty(password)){
-//            jedisCluster = new JedisCluster(haps, connectionTimeout, soTimeout,maxAttempts,password,genericObjectPoolConfig);
-//        }else
+        if (StringUtils.isNotEmpty(password)){
+            jedisCluster = new JedisCluster(haps, connectionTimeout, soTimeout,maxAttempts,password,genericObjectPoolConfig);
+        }else
             jedisCluster = new JedisCluster(haps, connectionTimeout, soTimeout,maxAttempts,genericObjectPoolConfig);
     }
 

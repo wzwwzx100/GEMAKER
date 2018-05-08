@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.BaseTypeDo;
+import com.mogu.GEMAKER.model.entity.BaseTypeDo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

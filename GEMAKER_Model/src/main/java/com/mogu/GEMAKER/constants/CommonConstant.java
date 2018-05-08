@@ -1,7 +1,10 @@
 package com.mogu.GEMAKER.constants;
 
+import io.netty.channel.ChannelHandlerContext;
+
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by chang on 2017/6/17.
@@ -32,6 +35,9 @@ public class CommonConstant {
     public  static  Long DEFAULT_RADIUS = 5000L;
 
     public static final String ADMIN_SESSION="adminSession";
+
+
+    public static ConcurrentHashMap<String,ChannelHandlerContext> udp_link = new ConcurrentHashMap<String,ChannelHandlerContext>();
 
 
 

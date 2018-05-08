@@ -4,22 +4,26 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mogu.GEMAKER.constants.CommonConstant;
 import com.mogu.GEMAKER.dao.mapper.CommandDoMapper;
 import com.mogu.GEMAKER.dao.mapper.SensorDoMapper;
-import com.mogu.GEMAKER.entity.CommandDo;
-import com.mogu.GEMAKER.entity.MessageDo;
-import com.mogu.GEMAKER.entity.MsgInfoDo;
-import com.mogu.GEMAKER.entity.TerminalDo;
+import com.mogu.GEMAKER.dao.mapper.TemplateDoMapper;
+import com.mogu.GEMAKER.model.entity.*;
 import com.mogu.GEMAKER.service.CommandService;
 import com.mogu.GEMAKER.service.MessageService;
 import com.mogu.GEMAKER.service.SystemConfigService;
+import com.mogu.GEMAKER.service.TemplateService;
 import com.mogu.GEMAKER.service.net.UDPClient;
 import com.mogu.GEMAKER.util.BizResult;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.socket.DatagramPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.InetSocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -36,11 +40,23 @@ public class CommandServiceImpl implements CommandService{
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private TemplateDoMapper templateService;
+
+
     @Override
     public BizResult add(CommandDo commandDo) {
         int ret = -1;
         ret = commandDoMapper.add(commandDo);
-        return ret == 0 ? BizResult.success() : BizResult.error();
+        return ret == 1 ? BizResult.success() : BizResult.error();
+    }
+
+    @Override
+    public BizResult modify(CommandDo commandDo) {
+        int ret = -1;
+        ret = commandDoMapper.modify(commandDo);
+        return ret == 1 ? BizResult.success() : BizResult.error();
     }
 
     @Override
@@ -57,10 +73,8 @@ public class CommandServiceImpl implements CommandService{
 
     @Override
     public BizResult send(CommandDo commandDo) {
-        UDPClient udp = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            udp = new UDPClient(commandDo.getTerminal().getIp(),commandDo.getTerminal().getPort());
             Calendar c = Calendar.getInstance();
             long sq = c.get(Calendar.HOUR_OF_DAY)*3600+c.get(Calendar.MINUTE)*60+c.get(Calendar.SECOND);
             // step 1 : 组装message信息
@@ -68,7 +82,7 @@ public class CommandServiceImpl implements CommandService{
             messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
             messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
             messageDo.setSq(sq);
-            messageDo.setMid("1143");
+            messageDo.setMid(commandDo.getMessageType().getCode());
             messageDo.setSid("000000000000");
             messageDo.setLife(-1);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -95,15 +109,21 @@ public class CommandServiceImpl implements CommandService{
             messageService.addMessage(msgInfoDo);
             // step 3 发送消息
             log.info("start sending command :"+commandDo.getId());
-            udp.run(commandDo.getId(),jsonText+"###");
+            ChannelHandlerContext ctx = CommonConstant.udp_link.get(msgInfoDo.getTerminalId());
+            if(ctx != null){
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(commandDo.getTerminal().getIp(),commandDo.getTerminal().getPort()));
+                ctx.writeAndFlush(dp);
+                commandDo.setStatus(1);
+                modify(commandDo);
+            }else{
+                return BizResult.error("设备离线");
+            }
         } catch (JsonProcessingException e) {
             log.error(e.getMessage(),e);
-            return BizResult.error();
+            return BizResult.error(e.getMessage());
         } catch (Exception e) {
             log.error(e.getMessage(),e);
-            return BizResult.error();
-        }finally {
-            udp = null;
+            return BizResult.error(e.getMessage());
         }
         return BizResult.success();
     }
@@ -115,16 +135,21 @@ public class CommandServiceImpl implements CommandService{
         MessageDo messageDo = new MessageDo();
         messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
         messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
-        messageDo.setMid("1143");
+        messageDo.setMid(commandDo.getMessageType().getCode());
         messageDo.setSid("000000000000");
         messageDo.setLife(-1);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         messageDo.setTs(sdf.format(commandDo.getTime()));
         Map<String,Object> msgMap = new HashMap<>();
-        msgMap.put("cmd_id",commandDo.getId());
-        msgMap.put("cmd",commandDo.getJsonMsg());
-        String jsonMsg = mapper.writeValueAsString(msgMap);
-        messageDo.setMsg(jsonMsg);
+
+        if(commandDo.getMessageType().getCode().equals("2013")){
+            messageDo.setMsg(commandDo.getJsonMsg());
+        }else {
+            msgMap.put("cmd_id",commandDo.getId());
+            msgMap.put("cmd", commandDo.getJsonMsg());
+            String jsonMsg = mapper.writeValueAsString(msgMap);
+            messageDo.setMsg(jsonMsg);
+        }
         return messageDo;
     }
 
@@ -140,5 +165,23 @@ public class CommandServiceImpl implements CommandService{
     @Override
     public List<CommandDo> findFailed(TerminalDo terminalId) {
         return commandDoMapper.findFailed(terminalId);
+    }
+
+    @Override
+    public BizResult readTemplate(TemplateDo templateDo) {
+        //read template
+        templateDo = templateService.get(templateDo);
+        String teminalId= templateDo.getParam1();
+        TerminalDo terminalDo = new TerminalDo();
+        terminalDo.setId(teminalId);
+        //create command
+        CommandDo cmd = new CommandDo();
+        cmd.setStatus(0);
+        cmd.setMessageType(templateDo.getMessageType());
+        cmd.setTerminal(terminalDo);
+
+
+
+        return null;
     }
 }

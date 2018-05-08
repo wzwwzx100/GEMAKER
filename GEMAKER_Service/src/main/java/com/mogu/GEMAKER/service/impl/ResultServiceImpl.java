@@ -6,10 +6,10 @@ import com.mogu.GEMAKER.dao.mapper.DataDoMapper;
 import com.mogu.GEMAKER.dao.mapper.ResultDoMapper;
 import com.mogu.GEMAKER.dao.mapper.SensorDoMapper;
 import com.mogu.GEMAKER.dao.mapper.TerminalDoMapper;
-import com.mogu.GEMAKER.entity.DataDo;
-import com.mogu.GEMAKER.entity.ResultDo;
-import com.mogu.GEMAKER.entity.SensorDo;
-import com.mogu.GEMAKER.entity.TerminalDo;
+import com.mogu.GEMAKER.model.entity.DataDo;
+import com.mogu.GEMAKER.model.entity.ResultDo;
+import com.mogu.GEMAKER.model.entity.SensorDo;
+import com.mogu.GEMAKER.model.entity.TerminalDo;
 import com.mogu.GEMAKER.service.ResultService;
 import com.mogu.GEMAKER.util.BizResult;
 import org.slf4j.Logger;
@@ -66,6 +66,16 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public BizResult realValue(TerminalDo terminalDo) {
+//        List<ResultDo> lst = resultDoMapper.realValue(terminalDo);
+//        for(ResultDo item : lst){
+//
+//        }
         return BizResult.success(resultDoMapper.realValue(terminalDo));
+    }
+
+    @Override
+    public BizResult updateRealTime(ResultDo resultDo) {
+
+        return BizResult.success(resultDoMapper.updateReal(resultDo));
     }
 }

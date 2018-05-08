@@ -1,7 +1,7 @@
 package com.mogu.GEMAKER.service;
 
-import com.mogu.GEMAKER.entity.ResultDo;
-import com.mogu.GEMAKER.entity.TerminalDo;
+import com.mogu.GEMAKER.model.entity.ResultDo;
+import com.mogu.GEMAKER.model.entity.TerminalDo;
 import com.mogu.GEMAKER.util.BizResult;
 
 public interface ResultService {
@@ -10,4 +10,6 @@ public interface ResultService {
     BizResult save(ResultDo result);
 
     BizResult realValue(TerminalDo terminalDo);
+
+    BizResult updateRealTime(ResultDo resultDo);
 }

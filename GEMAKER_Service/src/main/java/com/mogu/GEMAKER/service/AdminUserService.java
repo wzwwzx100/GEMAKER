@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.service;
 
-import com.mogu.GEMAKER.entity.AdminUserDo;
+import com.mogu.GEMAKER.model.entity.AdminUserDo;
 import com.mogu.GEMAKER.model.params.AdminLoginPara;
 import com.mogu.GEMAKER.model.params.AdminPassPara;
 import com.mogu.GEMAKER.model.params.AdminUserPara;

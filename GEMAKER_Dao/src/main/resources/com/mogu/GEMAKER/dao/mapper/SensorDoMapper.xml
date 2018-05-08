@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.SensorDoMapper" >
 
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.SensorDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.SensorDo" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="channel" property="channel" jdbcType="INTEGER" />
@@ -13,14 +13,14 @@
         <result column="terminal" property="terminal" jdbcType="VARCHAR" />
         <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
         <result column="count" property="count" jdbcType="INTEGER" />
-        <association property="type"  javaType="com.mogu.GEMAKER.entity.SensorTypeDo">
+        <association property="type"  javaType="com.mogu.GEMAKER.model.entity.SensorTypeDo">
             <id column="sensor_type_id"  property="id"/>
             <result column="sensor_type_code" property="code"/>
             <result column="sensor_type_name" property="name"/>
         </association>
     </resultMap>
 
-    <insert id="register" parameterType="com.mogu.GEMAKER.entity.SensorDo" >
+    <insert id="register" parameterType="com.mogu.GEMAKER.model.entity.SensorDo" >
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -86,7 +86,7 @@
     </insert>
 
 
-    <delete id="delete" parameterType="com.mogu.GEMAKER.entity.SensorDo">
+    <delete id="delete" parameterType="com.mogu.GEMAKER.model.entity.SensorDo">
         DELETE  FROM tbl_sensor where id = #{id,jdbcType=BIGINT}
     </delete>
 
@@ -109,7 +109,7 @@
         where terminal = #{terminal,jdbcType=VARCHAR}
     </select>
 
-    <update id="update" parameterType="com.mogu.GEMAKER.entity.SensorDo" >
+    <update id="update" parameterType="com.mogu.GEMAKER.model.entity.SensorDo" >
         update tbl_sensor
         <set >
             <if test="name != null" >
@@ -138,5 +138,10 @@
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <update id="disCount" parameterType="com.mogu.GEMAKER.model.entity.SensorDo" >
+       update tbl_sensor set count = count - 1;
     </update>
 </mapper>

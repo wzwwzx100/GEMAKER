@@ -1,7 +1,7 @@
 package com.mogu.GEMAKER.api.interceptor;
 
 import com.mogu.GEMAKER.constants.CommonConstant;
-import com.mogu.GEMAKER.entity.AdminUserDo;
+import com.mogu.GEMAKER.model.entity.AdminUserDo;
 import com.mogu.GEMAKER.exceptions.NoToken;
 import com.mogu.GEMAKER.service.RedisService;
 import org.apache.commons.lang3.StringUtils;

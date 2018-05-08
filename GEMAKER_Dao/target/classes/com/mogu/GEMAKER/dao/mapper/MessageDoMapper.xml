@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.MessageDoMapper" >
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.MsgInfoDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.MsgInfoDo" >
         <id column="id" property="id"  jdbcType="BIGINT" />
         <result column="at_time" property="atTime" jdbcType="TIMESTAMP" />
         <result column="life" property="life" jdbcType="INTEGER" />
@@ -20,7 +20,7 @@
         id, at_time,life,sq,terminal_id,msg_code,msg_codename,msg_type,msg,private_msg,json_text
     </sql>
 
-    <insert id="addMessage" parameterType="com.mogu.GEMAKER.entity.MsgInfoDo" >
+    <insert id="addMessage" parameterType="com.mogu.GEMAKER.model.entity.MsgInfoDo" >
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -92,7 +92,7 @@
     </insert>
     
     
-    <select id="lst" resultMap="BaseResultMap" parameterType="com.mogu.GEMAKER.entity.MessageParam">
+    <select id="lst" resultMap="BaseResultMap" parameterType="com.mogu.GEMAKER.model.params.MessageParam">
         select * from tbl_msg WHERE  `at_time`  &lt;= #{ed,jdbcType=TIMESTAMP} and `at_time`  &gt;=  #{bg,jdbcType=TIMESTAMP}
         <if test="terminalId != null">
            AND terminal_id = #{terminalId}

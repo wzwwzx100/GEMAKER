@@ -6,8 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mogu.GEMAKER.constants.CommonConstant;
-import com.mogu.GEMAKER.entity.*;
+import com.mogu.GEMAKER.model.entity.*;
 import com.mogu.GEMAKER.service.MessageService;
+import com.mogu.GEMAKER.service.RedisService;
 import com.mogu.GEMAKER.service.ResultService;
 import com.mogu.GEMAKER.service.TerminalService;
 import com.mogu.GEMAKER.service.net.UDPServer;
@@ -129,11 +130,26 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                     //消息是否过期验证
                     if(-1 == messageDo.getLife() || l < messageDo.getLife()){
                         TerminalDo terminalDo = terminalService.findById(messageDo.getSid());
+//                        redisService.setObj(terminalDo.getId(),ctx,180);
+                        CommonConstant.udp_link.put(terminalDo.getId(),ctx);
                         if(terminalDo != null){
-                            //step 1.验证sign
+
+                            //更新终端信息
+                            TerminalDo newTerminal = new TerminalDo();
+                            newTerminal.setId(terminalDo.getId());
+                            newTerminal.setIp(ip);
+                            newTerminal.setPort(port);
+                            newTerminal.setLastTime(sdf.parse(messageDo.getTs()));
+                            BizResult bizResult = terminalService.modify(newTerminal);
+                            if(bizResult.equals(BizResult.error())){
+                                log.error(bizResult.getMessage());
+                            }
+
+                            //验证sign
                             String str = MessageFormat.format("{0}{1}{2}{3}{4}{5}", messageDo.getTs(), messageDo.getSq().toString(), messageDo.getSid(), messageDo.getMid(), messageDo.getMsg(), terminalDo.getKeyt());
                             String md5 = MD5Util.toMD5(str);
                             md5 = md5.substring(0,8);
+
                             //解析
                             String mid = messageDo.getMid();
                             if((mid.equals("1994") && messageDo.getSign() != null )|| md5.equals(messageDo.getSign())){//异常无需签名
@@ -150,22 +166,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
 
                                 if(bizResult.equals(BizResult.error())){
                                     log.error(bizResult.getMessage());
                                 }
-                                //step 3 更新终端信息
-                                TerminalDo newTerminal = new TerminalDo();
-                                newTerminal.setId(terminalDo.getId());
-                                newTerminal.setIp(ip);
-                                newTerminal.setPort(port);
-                                newTerminal.setLastTime(sdf.parse(messageDo.getTs()));
-                                bizResult = terminalService.modify(newTerminal);
 
-                                if(bizResult.equals(BizResult.error())){
-                                    log.error(bizResult.getMessage());
-                                }
                                 //step 4  查询下发命令
                                 MessageDo commandMsg = terminalService.getCommand(terminalDo);
                                 if(commandMsg == null){
@@ -226,13 +232,14 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
                                 if(bizResult.equals(BizResult.error())){
                                     log.error("1144 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
 
-                                // step 2 更新命令状态
+
+                                // step 3 更新命令状态
                                 Map<String,Object> msgMap = mapper.readValue(messageDo.getMsg(),new TypeReference<Map<String,Object>>(){});
                                 Integer result = (int) msgMap.get("result");
                                 if(result == 0){
@@ -258,21 +265,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
                                 if(bizResult.equals(BizResult.error())){
                                     log.error("1051 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
-                                //step 2 更新终端信息
-                                TerminalDo newTerminal = new TerminalDo();
-                                newTerminal.setId(terminalDo.getId());
-                                newTerminal.setIp(ip);
-                                newTerminal.setPort(port);
-                                newTerminal.setLastTime(sdf.parse(messageDo.getTs()));
-                                bizResult = terminalService.modify(newTerminal);
-                                if(bizResult.equals(BizResult.error())){
-                                    log.error(bizResult.getMessage());
-                                }
+
                                 //step 3 应答
                                 returnMsg.setMid("1052");
                                 returnMsg.setMsg("");
@@ -308,21 +306,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
                                 if(bizResult.equals(BizResult.error())){
                                     log.error("1061 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
-                                //step 2 更新终端信息
-                                TerminalDo newTerminal = new TerminalDo();
-                                newTerminal.setId(terminalDo.getId());
-                                newTerminal.setIp(ip);
-                                newTerminal.setPort(port);
-                                newTerminal.setLastTime(sdf.parse(messageDo.getTs()));
-                                bizResult = terminalService.modify(newTerminal);
-                                if(bizResult.equals(BizResult.error())){
-                                    log.error(bizResult.getMessage());
-                                }
+
                                 //step 3 应答
                                 returnMsg.setMid("1062");
                                 returnMsg.setMsg("");
@@ -358,21 +347,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
                                 if(bizResult.equals(BizResult.error())){
                                     log.error("1081 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
-                                //step 2 更新终端信息
-                                TerminalDo newTerminal = new TerminalDo();
-                                newTerminal.setId(terminalDo.getId());
-                                newTerminal.setIp(ip);
-                                newTerminal.setPort(port);
-                                newTerminal.setLastTime(sdf.parse(messageDo.getTs()));
-                                bizResult = terminalService.modify(newTerminal);
-                                if(bizResult.equals(BizResult.error())){
-                                    log.error(bizResult.getMessage());
-                                }
+
                                 //step 3 应答
                                 returnMsg.setMid("1082");
                                 returnMsg.setMsg("");
@@ -408,21 +388,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
                                 if(bizResult.equals(BizResult.error())){
                                     log.error("1051 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
-                                //step 2 更新终端信息
-                                TerminalDo newTerminal = new TerminalDo();
-                                newTerminal.setId(terminalDo.getId());
-                                newTerminal.setIp(ip);
-                                newTerminal.setPort(port);
-                                newTerminal.setLastTime(sdf.parse(messageDo.getTs()));
-                                bizResult = terminalService.modify(newTerminal);
-                                if(bizResult.equals(BizResult.error())){
-                                    log.error(bizResult.getMessage());
-                                }
+
                                 //step 3 保存数据
                                 String msg = messageDo.getMsg();
                                 if(msg != null){
@@ -500,11 +471,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 msgInfoDo.setSq(messageDo.getSq());
                                 msgInfoDo.setPrivateMsg(messageDo.getMsg());
                                 msgInfoDo.setMsgType(1);
-                                BizResult bizResult = messageService.addMessage(msgInfoDo);
+                                bizResult = messageService.addMessage(msgInfoDo);
                                 if(bizResult.equals(BizResult.error())){
                                     log.error("1994 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
+
                                 returnMsg = null;
                                 msgInfoDo = null;
                                 bizResult = null;
@@ -532,6 +504,7 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                 messageService.addMessage(msgInfoDo);
                                 msg = null;
                             }
+                            bizResult = null;
                         }else{
                             //异常2：签名错误
                             log.error("异常2：签名错误");
@@ -574,8 +547,10 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                 returnMsg.setMsg(mapper.writeValueAsString(msg));
                 msg = null;
             }
+
             final_string += mapper.writeValueAsString(returnMsg)+"###";
         }
+        log.info("response:"+final_string);
         DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(final_string.getBytes()), packet.sender());
         ctx.writeAndFlush(dp);
     }

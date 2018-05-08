@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.ApplicationDoMapper" >
 
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.ApplicationDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.ApplicationDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="address" property="address" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
     </resultMap>
 
 
-    <insert id="save" parameterType="com.mogu.GEMAKER.entity.ApplicationDo" >
+    <insert id="save" parameterType="com.mogu.GEMAKER.model.entity.ApplicationDo" >
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -68,11 +68,11 @@
     </insert>
 
 
-    <delete id="delete" parameterType="com.mogu.GEMAKER.entity.ApplicationDo">
+    <delete id="delete" parameterType="com.mogu.GEMAKER.model.entity.ApplicationDo">
         DELETE  FROM tbl_application where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <update id="update" parameterType="com.mogu.GEMAKER.entity.ApplicationDo">
+    <update id="update" parameterType="com.mogu.GEMAKER.model.entity.ApplicationDo">
         update tbl_application
         <set >
             <if test="name != null" >

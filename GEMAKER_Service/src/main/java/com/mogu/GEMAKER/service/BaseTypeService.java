@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.service;
 
-import com.mogu.GEMAKER.entity.BaseTypeDo;
+import com.mogu.GEMAKER.model.entity.BaseTypeDo;
 import com.mogu.GEMAKER.util.BizResult;
 
 public interface BaseTypeService {

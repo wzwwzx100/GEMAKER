@@ -2,28 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.ResultDoMapper" >
 
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.ResultDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.ResultDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="valid" property="valid" jdbcType="INTEGER" />
         <result column="time" property="time" jdbcType="TIMESTAMP" />
         <result column="value" property="value" jdbcType="DOUBLE" />
         <result column="status" property="status" jdbcType="INTEGER" />
-        <association property="terminal" column="terminal" javaType="com.mogu.GEMAKER.entity.TerminalDo" select="queryTerminal"/>
-        <association property="sensor" column="sensor" javaType="com.mogu.GEMAKER.entity.SensorDo" select="querySensor"/>
-        <association property="data" column="data" javaType="com.mogu.GEMAKER.entity.DataDo" select="queryData"/>
+        <association property="terminal" column="terminal" javaType="com.mogu.GEMAKER.model.entity.TerminalDo" select="queryTerminal"/>
+        <association property="sensor" column="sensor" javaType="com.mogu.GEMAKER.model.entity.SensorDo" select="querySensor"/>
+        <association property="data" column="data" javaType="com.mogu.GEMAKER.model.entity.DataDo" select="queryData"/>
     </resultMap>
 
-    <resultMap id="TerminalResultMap" type="com.mogu.GEMAKER.entity.TerminalDo" >
+    <resultMap id="TerminalResultMap" type="com.mogu.GEMAKER.model.entity.TerminalDo" >
         <result column="id" property="id" jdbcType="VARCHAR" />
         <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
         <result column="ip" property="ip" jdbcType="VARCHAR" />
         <result column="port" property="port" jdbcType="INTEGER" />
         <result column="keyt" property="keyt" jdbcType="VARCHAR" />
-        <association property="product" column="product" javaType="com.mogu.GEMAKER.entity.ProductDo" select="queryProduct"/>
-        <association property="application" column="application" javaType="com.mogu.GEMAKER.entity.ApplicationDo" select="queryApp"/>
+        <association property="product" column="product" javaType="com.mogu.GEMAKER.model.entity.ProductDo" select="queryProduct"/>
+        <association property="application" column="application" javaType="com.mogu.GEMAKER.model.entity.ApplicationDo" select="queryApp"/>
     </resultMap>
 
-    <resultMap id="SensorResultMap" type="com.mogu.GEMAKER.entity.SensorDo" >
+    <resultMap id="SensorResultMap" type="com.mogu.GEMAKER.model.entity.SensorDo" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="channel" property="channel" jdbcType="INTEGER" />
@@ -33,24 +33,24 @@
         <result column="text" property="text" jdbcType="VARCHAR" />
         <result column="terminal" property="terminal" jdbcType="VARCHAR" />
         <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
-        <association property="type"  javaType="com.mogu.GEMAKER.entity.SensorTypeDo">
+        <association property="type"  javaType="com.mogu.GEMAKER.model.entity.SensorTypeDo">
             <id column="sensor_type_id"  property="id"/>
             <result column="sensor_type_code" property="code"/>
             <result column="sensor_type_name" property="name"/>
         </association>
     </resultMap>
 
-    <resultMap id="DataResultMap" type="com.mogu.GEMAKER.entity.DataDo" >
+    <resultMap id="DataResultMap" type="com.mogu.GEMAKER.model.entity.DataDo" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="sensor" property="sensor" jdbcType="BIGINT" />
         <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
-        <association property="deviceType"  javaType="com.mogu.GEMAKER.entity.DeviceTypeDo">
+        <association property="deviceType"  javaType="com.mogu.GEMAKER.model.entity.DeviceTypeDo">
             <id column="device_type_id"  property="id"/>
             <result column="device_type_code" property="code"/>
             <result column="device_type_name" property="name"/>
             <result column="device_type_graph" property="graph"/>
         </association>
-        <association property="dataType"  javaType="com.mogu.GEMAKER.entity.DataTypeDo">
+        <association property="dataType"  javaType="com.mogu.GEMAKER.model.entity.DataTypeDo">
             <id column="data_type_id"  property="id"/>
             <result column="data_type_code" property="code"/>
             <result column="data_type_name" property="name"/>
@@ -78,7 +78,7 @@
         where d.id = #{0}
     </select>
 
-    <resultMap id="productMap" type="com.mogu.GEMAKER.entity.ProductDo" >
+    <resultMap id="productMap" type="com.mogu.GEMAKER.model.entity.ProductDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
     </resultMap>
@@ -86,7 +86,7 @@
         select * from tbl_product where id =#{0}
     </select>
 
-    <resultMap id="AppMap" type="com.mogu.GEMAKER.entity.ApplicationDo" >
+    <resultMap id="AppMap" type="com.mogu.GEMAKER.model.entity.ApplicationDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="address" property="address" jdbcType="VARCHAR" />
@@ -101,7 +101,7 @@
     </select>
 
 
-    <insert id="save" parameterType="com.mogu.GEMAKER.entity.ResultDo" >
+    <insert id="save" parameterType="com.mogu.GEMAKER.model.entity.ResultDo" >
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -164,12 +164,20 @@
     </select>
 
 
-    <select id="realValue" resultMap="BaseResultMap" parameterType="com.mogu.GEMAKER.entity.TerminalDo">
-        select
-        CASE
-            WHEN (TIME_TO_SEC(TIMEDIFF(now(),last_time)) > (select `value` from tbl_config where code = "heart") or last_time is null) THEN 0
-            else 1
-        END valid ,
-        a.* from (SELECT * from tbl_result where terminal = #{id} ORDER BY time  desc ) a  JOIN tbl_data d on d.id = a.`data` group by a.`data`
-    </select>
-</mapper>
+    <!--<select id="realValue" resultMap="BaseResultMap" parameterType="com.mogu.GEMAKER.model.entity.TerminalDo">-->
+        <!--select-->
+        <!--CASE-->
+            <!--WHEN (TIME_TO_SEC(TIMEDIFF(now(),last_time)) > (select `value` from tbl_config where code = "heart") or last_time is null) THEN 0-->
+            <!--else 1-->
+        <!--END valid ,-->
+        <!--a.`data`,a.`terminal`,a.`value` from  tbl_result  a JOIN tbl_data d on d.id = a.`data` where terminal = #{id} group by a.`data` ORDER BY time  desc-->
+    <!--</select>-->
+
+    <select id="realValue" resultMap="BaseResultMap" parameterType="com.mogu.GEMAKER.model.entity.TerminalDo">
+        SELECT  * FROM tbl_realtime where terminal = #{id}
+        </select>
+
+    <update id="updateReal" parameterType="com.mogu.GEMAKER.model.entity.ResultDo">
+        update tbl_realtime set value = #{value} where data = #{data.id}
+    </update>
+    </mapper>

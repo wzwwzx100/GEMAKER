@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.AdminUserDo;
+import com.mogu.GEMAKER.model.entity.AdminUserDo;
 import com.mogu.GEMAKER.model.params.AdminPassPara;
 import org.springframework.stereotype.Repository;
 

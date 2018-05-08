@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.ProductDoMapper" >
 
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.ProductDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.ProductDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
     </resultMap>
 
 
-    <insert id="save" parameterType="com.mogu.GEMAKER.entity.ProductDo" >
+    <insert id="save" parameterType="com.mogu.GEMAKER.model.entity.ProductDo" >
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -26,11 +26,11 @@
     </insert>
 
 
-    <delete id="delete" parameterType="com.mogu.GEMAKER.entity.ProductDo">
+    <delete id="delete" parameterType="com.mogu.GEMAKER.model.entity.ProductDo">
         DELETE  FROM tbl_product where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <update id="update" parameterType="com.mogu.GEMAKER.entity.ProductDo">
+    <update id="update" parameterType="com.mogu.GEMAKER.model.entity.ProductDo">
         update tbl_product
         <set >
             <if test="name != null" >

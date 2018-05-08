@@ -8,23 +8,25 @@ import com.github.pagehelper.PageInfo;
 import com.mogu.GEMAKER.Enum.ResultCode;
 import com.mogu.GEMAKER.constants.CommonConstant;
 import com.mogu.GEMAKER.dao.mapper.*;
-import com.mogu.GEMAKER.entity.*;
-import com.mogu.GEMAKER.model.common.SystemConfig;
+import com.mogu.GEMAKER.model.entity.*;
+import com.mogu.GEMAKER.model.params.DowndataParam;
+import com.mogu.GEMAKER.model.params.SwitchParam;
+import com.mogu.GEMAKER.model.params.TerminalParam;
 import com.mogu.GEMAKER.service.CommandService;
-import com.mogu.GEMAKER.service.MessageTypeService;
+import com.mogu.GEMAKER.service.ResultService;
 import com.mogu.GEMAKER.service.SystemConfigService;
 import com.mogu.GEMAKER.service.TerminalService;
-import com.mogu.GEMAKER.service.net.UDPClient;
 import com.mogu.GEMAKER.util.BizResult;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.socket.DatagramPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.Protocol;
-import sun.management.Sensor;
 
 import javax.annotation.Resource;
-import javax.xml.transform.Result;
+import java.net.InetSocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -49,6 +51,10 @@ public class TerminalServiceImpl implements TerminalService{
 
     @Autowired
     private CommandService commandService;
+
+    @Resource
+    private ResultService resultService;
+
 
     private static final Logger log = LoggerFactory.getLogger(TerminalServiceImpl.class);
     @Override
@@ -84,16 +90,20 @@ public class TerminalServiceImpl implements TerminalService{
     }
 
     @Override
-    public BizResult lst(int pageNum, int pageSize,TerminalDo terminalDo) {
-        String orderBy = "id asc";
-        PageHelper.startPage(pageNum,pageSize,orderBy);
-        List<TerminalDo> lst = terminalDoMapper.lst(terminalDo);
-        PageInfo pageInfo = new PageInfo(lst);
-        return BizResult.success(pageInfo);
+    public BizResult lst(Integer pageNum, Integer pageSize,TerminalDo terminalDo) {
+        if(pageNum == null || pageSize == null){
+            return BizResult.success(terminalDoMapper.lst(terminalDo));
+        }else{
+            String orderBy = "id asc";
+            PageHelper.startPage(pageNum,pageSize,orderBy);
+            List<TerminalDo> lst = terminalDoMapper.lst(terminalDo);
+            PageInfo pageInfo = new PageInfo(lst);
+            return BizResult.success(pageInfo);
+        }
     }
 
     @Override
-    public BizResult offLine(int pageNum, int pageSize, TerminalParam terminalDo) {
+    public BizResult offLine(Integer pageNum, Integer pageSize, TerminalParam terminalDo) {
         String orderBy = "id asc";
         PageHelper.startPage(pageNum,pageSize,orderBy);
         terminalDo.setTime(terminalDo.getTime()*60);
@@ -108,6 +118,46 @@ public class TerminalServiceImpl implements TerminalService{
     }
 
     @Override
+    public BizResult testSend(TerminalDo terminalDo) {
+        terminalDo = findById(terminalDo.getId());
+        Date now = new Date();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        MessageDo messageDo = new MessageDo();
+        messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
+        messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
+        messageDo.setMid("2013");
+        messageDo.setSid("000000000000");
+        messageDo.setLife(-1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        messageDo.setTs(sdf.format(now));
+        Map<String,Object> msgMap = new HashMap<>();
+        msgMap.put("cmd_id","1");
+        Map<Long,String> rcds = new HashMap();
+        rcds.put(1l,"test");
+        msgMap.put("rcds",rcds);
+
+        try {
+            String jsonMsg = mapper.writeValueAsString(msgMap);
+            messageDo.setMsg(jsonMsg);
+            messageDo.setSq(1L);
+            messageDo.Encrypt(terminalDo.getKeyt());
+            ChannelHandlerContext ctx = CommonConstant.udp_link.get(terminalDo.getId());
+            if(ctx != null){
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
+                ctx.writeAndFlush(dp);
+            }else{
+                return BizResult.success();
+            }
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+        }
+        return BizResult.success();
+    }
+
+    @Override
     public BizResult issueConfig(TerminalDo terminalDo) {
         terminalDo = findById(terminalDo.getId());
         Date now = new Date();
@@ -115,8 +165,6 @@ public class TerminalServiceImpl implements TerminalService{
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         MessageTypeDo messageTypeDo = (MessageTypeDo) messageTypeDoMapper.findByCode("1143");
         List<SensorDo> sensors = sensorDoMapper.lst(terminalDo.getId());
-        SystemConfig systemConfig = systemConfigService.findByCode("heart");
-        UDPClient udp = new UDPClient(terminalDo.getIp(),terminalDo.getPort());
         for(int i=0;i<sensors.size();i++){
             SensorDo item = sensors.get(i);
             CommandDo commandDo = new CommandDo();
@@ -157,11 +205,13 @@ public class TerminalServiceImpl implements TerminalService{
                 return BizResult.error();
             }
             commandDo.setStatus(0);
-            commandService.add(commandDo);
-            //查询设备是否离线
-            Date start = terminalDo.getLastTime();
-            if(start != null && (start.getTime() + Long.parseLong(systemConfig.getValue())*1000) >= now.getTime() ){
-                commandService.send(commandDo);
+            BizResult save = commandService.add(commandDo);
+            if(save.equals(BizResult.error())){
+                return save;
+            }
+            BizResult send = commandService.send(commandDo);
+            if(save.equals(BizResult.error())){
+                return send;
             }
         }
         return BizResult.success();
@@ -199,4 +249,156 @@ public class TerminalServiceImpl implements TerminalService{
         return commandService.success(cmd_id);
     }
 
+    @Override
+    public BizResult switcher(SwitchParam switchParam) {
+        //检查设备是否离线
+        Date now = new Date();
+        DataDo dataDo = dataDoMapper.findById(switchParam.getData());
+        SensorDo sensorDo = new SensorDo();
+        sensorDo.setId(dataDo.getSensor());
+        sensorDo = sensorDoMapper.findById(sensorDo);
+        Integer frequency = sensorDo.getFrequency();
+        Date lastTime = dataDo.getLastTime();
+        if(now.getTime() - lastTime.getTime() > frequency*60l){//时间间隔大于采集频率
+            log.error("off_line data id ："+ dataDo.getId());
+            return BizResult.error("设备离线！");
+        }
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            MessageTypeDo messageTypeDo = (MessageTypeDo) messageTypeDoMapper.findByCode("2013");
+            TerminalDo terminalDo = findById(switchParam.getTerminal());
+
+            //make command
+            CommandDo commandDo = new CommandDo();
+            commandDo.setMessageType(messageTypeDo);
+            commandDo.setTerminal(terminalDo);
+            commandDo.setTime(now);
+            commandDo.setStatus(0);
+            commandService.add(commandDo);
+
+            Map<String,Object> msgMap = new HashMap<>();
+            msgMap.put("cmd_id",commandDo.getId());
+
+            List<Map<String,Object>> rcds = new ArrayList<>();
+            Map<String,Object> item = new HashMap<>();
+            item.put("id",switchParam.getData());
+            item.put("v",switchParam.getSwitcher());
+            rcds.add(item);
+            msgMap.put("rcds",rcds);
+            String jsonMsg = mapper.writeValueAsString(msgMap);
+            commandDo.setJsonMsg(jsonMsg);
+            MessageDo messageDo = new MessageDo();
+            messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
+            messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
+            messageDo.setMid(commandDo.getMessageType().getCode());
+            messageDo.setSid("000000000000");
+            messageDo.setLife(-1);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            messageDo.setTs(sdf.format(now));
+            messageDo.setMsg(jsonMsg);
+            //create SQ
+            Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minit = c.get(Calendar.MINUTE);
+            int second = c.get(Calendar.SECOND);
+            Long sq = hour*3600L+minit*60L+second;
+            messageDo.setSq(sq);
+            messageDo.Encrypt(terminalDo.getKeyt());
+            ChannelHandlerContext ctx = CommonConstant.udp_link.get(terminalDo.getId());
+            if(ctx != null){
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
+                ctx.writeAndFlush(dp);
+                commandDo.setStatus(1);
+                commandService.modify(commandDo);
+                ResultDo resultDo = new ResultDo();
+                DataDo data = new DataDo();
+                data.setId(switchParam.getData());
+                resultDo.setData(data);
+                resultDo.setValue(Double.parseDouble(switchParam.getSwitcher().toString()));
+                resultService.updateRealTime(resultDo);
+            }else{
+                commandDo.setStatus(0);
+                commandService.modify(commandDo);
+                return BizResult.error("设备离线！");
+            }
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage(),e);
+            return BizResult.error(e.getMessage());
+        }
+        return BizResult.success();
+    }
+
+    @Override
+    public BizResult downdata(DowndataParam switchParam) {
+        try {
+            TerminalDo terminalDo = findById(switchParam.getTerminal());
+            MessageTypeDo messageTypeDo = (MessageTypeDo) messageTypeDoMapper.findByCode("2013");
+            Date now = new Date();
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            //make command
+            CommandDo commandDo = new CommandDo();
+            commandDo.setMessageType(messageTypeDo);
+            commandDo.setTerminal(terminalDo);
+            commandDo.setTime(now);
+            commandDo.setStatus(0);
+            commandService.add(commandDo);
+            Map<String,Object> msgMap = new HashMap<>();
+            msgMap.put("cmd_id",commandDo.getId());
+            msgMap.put("rcds",switchParam.getRcds());
+            String jsonMsg = mapper.writeValueAsString(msgMap);
+            commandDo.setJsonMsg(jsonMsg);
+            MessageDo messageDo = new MessageDo();
+            messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
+            messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
+            messageDo.setMid(commandDo.getMessageType().getCode());
+            messageDo.setSid("000000000000");
+            messageDo.setLife(-1);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            messageDo.setTs(sdf.format(now));
+            messageDo.setMsg(jsonMsg);
+            //create SQ
+            Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minit = c.get(Calendar.MINUTE);
+            int second = c.get(Calendar.SECOND);
+            Long sq = hour*3600L+minit*60L+second;
+            messageDo.setSq(sq);
+            messageDo.Encrypt(terminalDo.getKeyt());
+            ChannelHandlerContext ctx = CommonConstant.udp_link.get(terminalDo.getId());
+            if(ctx != null){
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
+                ctx.writeAndFlush(dp);
+                commandDo.setStatus(1);
+                commandService.modify(commandDo);
+            }else{
+                commandDo.setStatus(0);
+                commandService.modify(commandDo);
+                return BizResult.error("设备离线！");
+            }
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage(),e);
+            return BizResult.error(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+            return BizResult.error(e.getMessage());
+        }
+        return BizResult.success();
+    }
+
+    @Override
+    public BizResult lstdata(TerminalDo terminalDo) {
+        return BizResult.success(dataDoMapper.lstbyterminal(terminalDo.getId()));
+    }
+
+
+    public static void main(String[] args){
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minit = c.get(Calendar.MINUTE);
+        int second = c.get(Calendar.SECOND);
+        System.out.println("H:"+hour+",M:"+minit+",S:"+second);
+
+    }
 }

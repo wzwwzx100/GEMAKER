@@ -1,7 +1,7 @@
 package com.mogu.GEMAKER.service;
 
-import com.mogu.GEMAKER.entity.ApplicationDo;
-import com.mogu.GEMAKER.entity.ProductDo;
+import com.mogu.GEMAKER.model.entity.ApplicationDo;
+import com.mogu.GEMAKER.model.entity.ProductDo;
 import com.mogu.GEMAKER.util.BizResult;
 
 public interface MarketService {

@@ -8,7 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.mogu.GEMAKER.Enum.ResultCode;
 import com.mogu.GEMAKER.constants.CommonConstant;
 import com.mogu.GEMAKER.dao.mapper.AdminUserDoMapper;
-import com.mogu.GEMAKER.entity.AdminUserDo;
+import com.mogu.GEMAKER.model.entity.AdminUserDo;
 import com.mogu.GEMAKER.model.common.BCrypt;
 import com.mogu.GEMAKER.model.params.AdminLoginPara;
 import com.mogu.GEMAKER.model.params.AdminPassPara;

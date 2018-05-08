@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.service;
 
-import com.mogu.GEMAKER.entity.SensorDo;
+import com.mogu.GEMAKER.model.entity.SensorDo;
 import com.mogu.GEMAKER.util.BizResult;
 
 public interface SensorService {

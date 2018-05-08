@@ -1,8 +1,10 @@
 package com.mogu.GEMAKER.api.action;
 
-import com.mogu.GEMAKER.entity.*;
+import com.mogu.GEMAKER.model.entity.*;
+import com.mogu.GEMAKER.model.params.TemplatePara;
 import com.mogu.GEMAKER.service.BaseTypeService;
 import com.mogu.GEMAKER.service.MarketService;
+import com.mogu.GEMAKER.service.TemplateService;
 import com.mogu.GEMAKER.util.WebResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class SettingCtrl extends  BaseCtrl{
 
     @Autowired
     private MarketService marketService;
+
+    @Autowired
+    private TemplateService templateService;
 
 
     /**
@@ -334,7 +339,7 @@ public class SettingCtrl extends  BaseCtrl{
     }
 
     /**
-     * 禁用应用
+     * 启用应用
      * @return
      */
     @RequestMapping(value = "setting/app/enable",method = RequestMethod.POST)
@@ -349,6 +354,55 @@ public class SettingCtrl extends  BaseCtrl{
     @RequestMapping(value = "setting/app/modify",method = RequestMethod.POST)
     public WebResult modifyApp(@RequestBody ApplicationDo applicationDo){
         return  new WebResult(marketService.modifyApplication(applicationDo));
+    }
+
+
+    /**
+     * 模板列表
+     * @return
+     */
+    @RequestMapping(value = "setting/template/lst",method = RequestMethod.POST)
+    public WebResult lstTemplate(@RequestParam(value = "pageNum",required = false) Integer pageNum, @RequestParam(value = "pageSize",required = false) Integer pageSize){
+        return  new WebResult(templateService.lst(pageNum,pageSize));
+    }
+
+    /**
+     * 增加模板
+     * @return
+     */
+    @RequestMapping(value = "setting/template/add",method = RequestMethod.POST)
+    public WebResult addTemplate(@RequestBody TemplateDo templateDo){
+        return  new WebResult(templateService.add(templateDo));
+    }
+
+
+    /**
+     * 获取模板
+     * @return
+     */
+    @RequestMapping(value = "setting/template/get",method = RequestMethod.POST)
+    public WebResult getTemplate(@RequestBody TemplateDo templateDo){
+        return  new WebResult(templateService.get(templateDo));
+    }
+
+
+    /**
+     * 修改应用
+     * @return
+     */
+    @RequestMapping(value = "setting/template/modify",method = RequestMethod.POST)
+    public WebResult modifyTemplate(@RequestBody TemplateDo templateDo){
+        return  new WebResult(templateService.modify(templateDo));
+    }
+
+
+    /**
+     * 删除模板
+     * @return
+     */
+    @RequestMapping(value = "setting/template/del",method = RequestMethod.POST)
+    public WebResult delTemplate(@RequestBody TemplateDo templateDo){
+        return  new WebResult(templateService.del(templateDo));
     }
 
 }
