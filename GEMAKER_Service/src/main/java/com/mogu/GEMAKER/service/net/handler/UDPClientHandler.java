@@ -19,12 +19,6 @@ public class UDPClientHandler extends SimpleChannelInboundHandler<DatagramPacket
     private static final Logger log = LoggerFactory.getLogger(UDPClient.class);
 
 
-    private Long cmd_id;
-
-    public UDPClientHandler(Long cmd_id) {
-        this.cmd_id = cmd_id;
-    }
-
     @Autowired
     private CommandService commandService;
 
@@ -32,9 +26,6 @@ public class UDPClientHandler extends SimpleChannelInboundHandler<DatagramPacket
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg)
             throws Exception {
         String response = msg.content().toString(CharsetUtil.UTF_8);
-        CommandDo cmd = new CommandDo();
-        cmd.setId(cmd_id);
-        log.info("command :"+cmd_id+" got response!");
         log.info(response);
         ctx.close();
     }
