@@ -14,7 +14,7 @@ public interface CommandService {
 
     BizResult modify(CommandDo commandDo);
 
-    BizResult success(Long id);
+    BizResult success(Long id,Integer flag);
 
     BizResult del(CommandDo commandDo);
 

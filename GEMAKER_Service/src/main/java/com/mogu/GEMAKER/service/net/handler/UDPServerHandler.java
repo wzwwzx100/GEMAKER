@@ -202,20 +202,6 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                     returnMsg.setSv(messageDo.getSv());
                                     returnMsg.setCv(messageDo.getCv());
                                     returnMsg.Encrypt(terminalDo.getKeyt());
-                                    String jsonText = mapper.writeValueAsString(messageDo);
-                                    //step 5 保存响应交易记录
-                                    msgInfoDo = new MsgInfoDo();
-                                    msgInfoDo.setTerminalId(returnMsg.getSid());
-                                    msgInfoDo.setLife(-1);
-                                    msgInfoDo.setSq(messageDo.getSq());
-                                    msgInfoDo.setAtTime(new Date());
-                                    msgInfoDo.setMsg(returnMsg.getMsg());
-                                    msgInfoDo.setPrivateMsg(returnMsg.getMsg());
-                                    msgInfoDo.setMsgCode("1143");
-                                    msgInfoDo.setMsgCodeName("下发配置");
-                                    msgInfoDo.setMsgType(1);
-                                    msgInfoDo.setJsonText(jsonText);
-                                    messageService.addMessage(msgInfoDo);
                                 }
                                 msgInfoDo = null;
                                 newTerminal = null;
@@ -237,13 +223,16 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
                                     log.error("1144 message save error!");
                                     log.error(bizResult.getMessage());
                                 }
-
-
                                 // step 3 更新命令状态
                                 Map<String,Object> msgMap = mapper.readValue(messageDo.getMsg(),new TypeReference<Map<String,Object>>(){});
                                 Integer result = (int) msgMap.get("result");
                                 if(result == 0){
-                                    bizResult = terminalService.successCommand(Long.parseLong(msgMap.get("cmd_id").toString()));
+                                    bizResult = terminalService.successCommand(Long.parseLong(msgMap.get("cmd_id").toString()),1);
+                                    if(bizResult.equals(BizResult.error())){
+                                        log.error(bizResult.getMessage());
+                                    }
+                                }else{
+                                    bizResult = terminalService.successCommand(Long.parseLong(msgMap.get("cmd_id").toString()),0);
                                     if(bizResult.equals(BizResult.error())){
                                         log.error(bizResult.getMessage());
                                     }

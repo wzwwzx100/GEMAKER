@@ -31,7 +31,7 @@ public interface TerminalService {
 
     MessageDo getCommand(TerminalDo terminalDo);
 
-    BizResult successCommand(Long cmd_id);
+    BizResult successCommand(Long cmd_id,Integer flag);
 
     BizResult switcher(SwitchParam switchParam);
 

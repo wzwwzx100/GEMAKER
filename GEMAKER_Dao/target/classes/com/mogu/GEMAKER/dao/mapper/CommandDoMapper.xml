@@ -111,11 +111,12 @@
                 status = #{status}
             </if>
         </set>
+        WHERE  id=#{id}
     </update>
 
 
-    <update id="success" parameterType="java.lang.Long">
-        update tbl_command set status = 1 WHERE id = #{0}
+    <update id="success">
+        update tbl_command set status = #{1} WHERE id = #{0}
     </update>
 
     <delete id="del" parameterType="com.mogu.GEMAKER.model.entity.CommandDo">
@@ -136,6 +137,10 @@
         <if test="terminal != null and terminal.id != null">
             AND c.terminal = #{terminal.id}
         </if>
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" >
+        select * from tbl_command WHERE id = #{id}
     </select>
 
     <select id="findFailed" resultMap="BaseResultMap" >

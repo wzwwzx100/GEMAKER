@@ -142,6 +142,6 @@
 
 
     <update id="disCount" parameterType="com.mogu.GEMAKER.model.entity.SensorDo" >
-       update tbl_sensor set count = count - 1;
+       update tbl_sensor set count = count - 1 where id = #{id};
     </update>
 </mapper>

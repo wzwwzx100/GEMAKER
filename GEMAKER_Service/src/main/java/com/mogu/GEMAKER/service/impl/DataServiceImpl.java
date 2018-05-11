@@ -29,6 +29,7 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public BizResult delete(DataDo dataDo) {
+        dataDo = dataDoMapper.findById(dataDo.getId());
         int ret = dataDoMapper.delete(dataDo);
         if(ret == 1){
             SensorDo sensorDo = new SensorDo();

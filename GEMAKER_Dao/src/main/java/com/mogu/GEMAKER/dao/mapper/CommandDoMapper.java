@@ -14,7 +14,9 @@ public interface CommandDoMapper {
 
     int del(Long id);
 
-    int success(Long id);
+    int success(Long id,Integer flag);
+
+    CommandDo findById(CommandDo commandDo);
 
     List<CommandDo> lst(CommandDo commandDo);
 

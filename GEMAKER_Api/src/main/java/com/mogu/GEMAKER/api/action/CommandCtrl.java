@@ -38,11 +38,11 @@ public class CommandCtrl extends BaseCtrl {
     }
 
     /**
-     * 下发配置
+     *
      * @return
      */
-    @RequestMapping(value = "command/find",method = RequestMethod.POST)
-    public WebResult find(@RequestBody TerminalDo terminalDo){
-        return  new WebResult(BizResult.success(commandService.findFailed(terminalDo)));
+    @RequestMapping(value = "command/resend",method = RequestMethod.POST)
+    public WebResult resend(@RequestBody CommandDo commandDo){
+        return  new WebResult(BizResult.success(commandService.send(commandDo)));
     }
 }

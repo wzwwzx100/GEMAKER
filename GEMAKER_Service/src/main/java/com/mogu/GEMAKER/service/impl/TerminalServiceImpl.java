@@ -171,46 +171,51 @@ public class TerminalServiceImpl implements TerminalService{
             commandDo.setMessageType(messageTypeDo);
             commandDo.setTerminal(terminalDo);
             commandDo.setTime(now);
-            Map<String,Object> jsonMsg = new HashMap<>();
+            commandService.add(commandDo);
+            Map<String,Object> jsonMsg = new LinkedHashMap<>();
+            Map<String,Object> cmd = new LinkedHashMap<>();
             if(i == 0){
-                jsonMsg.put("flag",1);
+                cmd.put("flag",1);
             }else{
-                jsonMsg.put("flag",2);
+                cmd.put("flag",2);
             }
-            jsonMsg.put("id",item.getFactory());
-            jsonMsg.put("type",item.getType().getCode());
-            jsonMsg.put("model",item.getModel());
-            jsonMsg.put("ch",item.getChannel());
-            jsonMsg.put("sampling",item.getFrequency());
-            jsonMsg.put("reserved",item.getText());
+            cmd.put("id",item.getFactory());
+            cmd.put("type",item.getType().getCode());
+            cmd.put("model",item.getModel());
+            cmd.put("ch",item.getChannel());
+            cmd.put("sampling",item.getFrequency());
+            cmd.put("reserved",item.getText());
             List<DataDo> dataDoList = dataDoMapper.lst(item.getId());
             if(dataDoList != null && !dataDoList.isEmpty()){
-                jsonMsg.put("count",dataDoList.size());
+                cmd.put("count",dataDoList.size());
                 List<Map<String,Object>> datas = new ArrayList<>();
                 for(DataDo data : dataDoList){
-                    Map<String,Object> map = new HashMap<>();
-                    map.put("type",data.getDataType().getCode());
+                    Map<String,Object> map = new LinkedHashMap<>();
                     map.put("id",data.getId());
+                    map.put("type",data.getDataType().getCode());
                     datas.add(map);
                 }
-                jsonMsg.put("datas", datas);
+                cmd.put("datas", datas);
             }else{
-                jsonMsg.put("count",0);
-                jsonMsg.put("datas", new ArrayList<>());
+                cmd.put("count",0);
+                cmd.put("datas", new ArrayList<>());
             }
+            jsonMsg.put("cmd_id",commandDo.getId());
             try {
+            jsonMsg.put("cmd",mapper.writeValueAsString(cmd));
+
                 commandDo.setJsonMsg(mapper.writeValueAsString(jsonMsg));
             } catch (JsonProcessingException e) {
                 log.error(e.getMessage(),e);
                 return BizResult.error();
             }
             commandDo.setStatus(0);
-            BizResult save = commandService.add(commandDo);
+            BizResult save = commandService.modify(commandDo);
             if(save.equals(BizResult.error())){
                 return save;
             }
             BizResult send = commandService.send(commandDo);
-            if(save.equals(BizResult.error())){
+            if(send.equals(BizResult.error())){
                 return send;
             }
         }
@@ -245,8 +250,8 @@ public class TerminalServiceImpl implements TerminalService{
     }
 
     @Override
-    public BizResult successCommand(Long cmd_id) {
-        return commandService.success(cmd_id);
+    public BizResult successCommand(Long cmd_id,Integer flag) {
+        return commandService.success(cmd_id,flag);
     }
 
     @Override
@@ -277,11 +282,11 @@ public class TerminalServiceImpl implements TerminalService{
             commandDo.setStatus(0);
             commandService.add(commandDo);
 
-            Map<String,Object> msgMap = new HashMap<>();
+            Map<String,Object> msgMap = new LinkedHashMap<>();
             msgMap.put("cmd_id",commandDo.getId());
 
             List<Map<String,Object>> rcds = new ArrayList<>();
-            Map<String,Object> item = new HashMap<>();
+            Map<String,Object> item = new LinkedHashMap<>();
             item.put("id",switchParam.getData());
             item.put("v",switchParam.getSwitcher());
             rcds.add(item);
@@ -307,7 +312,7 @@ public class TerminalServiceImpl implements TerminalService{
             messageDo.Encrypt(terminalDo.getKeyt());
             ChannelHandlerContext ctx = CommonConstant.udp_link.get(terminalDo.getId());
             if(ctx != null){
-                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer((mapper.writeValueAsString(messageDo)+"###").getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
                 ctx.writeAndFlush(dp);
                 commandDo.setStatus(1);
                 commandService.modify(commandDo);
@@ -344,7 +349,7 @@ public class TerminalServiceImpl implements TerminalService{
             commandDo.setTime(now);
             commandDo.setStatus(0);
             commandService.add(commandDo);
-            Map<String,Object> msgMap = new HashMap<>();
+            Map<String,Object> msgMap = new LinkedHashMap<>();
             msgMap.put("cmd_id",commandDo.getId());
             msgMap.put("rcds",switchParam.getRcds());
             String jsonMsg = mapper.writeValueAsString(msgMap);
@@ -368,7 +373,7 @@ public class TerminalServiceImpl implements TerminalService{
             messageDo.Encrypt(terminalDo.getKeyt());
             ChannelHandlerContext ctx = CommonConstant.udp_link.get(terminalDo.getId());
             if(ctx != null){
-                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer((mapper.writeValueAsString(messageDo)+"###").getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
                 ctx.writeAndFlush(dp);
                 commandDo.setStatus(1);
                 commandService.modify(commandDo);

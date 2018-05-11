@@ -1,6 +1,7 @@
 package com.mogu.GEMAKER.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -60,9 +61,9 @@ public class CommandServiceImpl implements CommandService{
     }
 
     @Override
-    public BizResult success(Long id) {
+    public BizResult success(Long id,Integer flag) {
         int ret = -1;
-        ret = commandDoMapper.success(id);
+        ret = commandDoMapper.success(id,flag);
         return ret == 1 ? BizResult.success() : BizResult.error();
     }
 
@@ -73,6 +74,9 @@ public class CommandServiceImpl implements CommandService{
 
     @Override
     public BizResult send(CommandDo commandDo) {
+        if(commandDo.getMessageType() == null){
+            commandDo = commandDoMapper.findById(commandDo);
+        }
         try {
             ObjectMapper mapper = new ObjectMapper();
             Calendar c = Calendar.getInstance();
@@ -87,12 +91,8 @@ public class CommandServiceImpl implements CommandService{
             messageDo.setLife(-1);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
             messageDo.setTs(sdf.format(commandDo.getTime()));
+            messageDo.setMsg(commandDo.getJsonMsg());
             messageDo.Encrypt(systemConfigService.findByCode("keyt").getValue());
-            Map<String,Object> msgMap = new HashMap<>();
-            msgMap.put("cmd_id",commandDo.getId());
-            msgMap.put("cmd",commandDo.getJsonMsg());
-            String jsonMsg = mapper.writeValueAsString(msgMap);
-            messageDo.setMsg(jsonMsg);
             String jsonText = mapper.writeValueAsString(messageDo);
             //step 2 保存交易记录
             MsgInfoDo msgInfoDo = new MsgInfoDo();
@@ -100,10 +100,10 @@ public class CommandServiceImpl implements CommandService{
             msgInfoDo.setLife(-1);
             msgInfoDo.setSq(sq);
             msgInfoDo.setAtTime(commandDo.getTime());
-            msgInfoDo.setMsg(jsonMsg);
-            msgInfoDo.setPrivateMsg(jsonMsg);
-            msgInfoDo.setMsgCode("1143");
-            msgInfoDo.setMsgCodeName("下发配置");
+            msgInfoDo.setMsg(commandDo.getJsonMsg());
+            msgInfoDo.setPrivateMsg(commandDo.getJsonMsg());
+            msgInfoDo.setMsgCode(commandDo.getMessageType().getCode());
+            msgInfoDo.setMsgCodeName(commandDo.getMessageType().getName());
             msgInfoDo.setMsgType(1);
             msgInfoDo.setJsonText(jsonText);
             messageService.addMessage(msgInfoDo);
@@ -111,7 +111,7 @@ public class CommandServiceImpl implements CommandService{
             log.info("start sending command :"+commandDo.getId());
             ChannelHandlerContext ctx = CommonConstant.udp_link.get(msgInfoDo.getTerminalId());
             if(ctx != null){
-                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer(mapper.writeValueAsString(messageDo).getBytes()),new InetSocketAddress(commandDo.getTerminal().getIp(),commandDo.getTerminal().getPort()));
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer((mapper.writeValueAsString(messageDo)+"###").getBytes()),new InetSocketAddress(commandDo.getTerminal().getIp(),commandDo.getTerminal().getPort()));
                 ctx.writeAndFlush(dp);
                 commandDo.setStatus(1);
                 modify(commandDo);
@@ -130,8 +130,10 @@ public class CommandServiceImpl implements CommandService{
 
     @Override
     public MessageDo createMessage(CommandDo commandDo) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
         Calendar c = Calendar.getInstance();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        long sq = c.get(Calendar.HOUR_OF_DAY)*3600+c.get(Calendar.MINUTE)*60+c.get(Calendar.SECOND);
         MessageDo messageDo = new MessageDo();
         messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
         messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
@@ -140,16 +142,22 @@ public class CommandServiceImpl implements CommandService{
         messageDo.setLife(-1);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         messageDo.setTs(sdf.format(commandDo.getTime()));
-        Map<String,Object> msgMap = new HashMap<>();
+        messageDo.setMsg(commandDo.getJsonMsg());
+        messageDo.setSq(sq);
 
-        if(commandDo.getMessageType().getCode().equals("2013")){
-            messageDo.setMsg(commandDo.getJsonMsg());
-        }else {
-            msgMap.put("cmd_id",commandDo.getId());
-            msgMap.put("cmd", commandDo.getJsonMsg());
-            String jsonMsg = mapper.writeValueAsString(msgMap);
-            messageDo.setMsg(jsonMsg);
-        }
+        //step 5 保存响应交易记录
+        MsgInfoDo msgInfoDo = new MsgInfoDo();
+        msgInfoDo.setTerminalId(commandDo.getTerminal().getId());
+        msgInfoDo.setLife(-1);
+        msgInfoDo.setSq(sq);
+        msgInfoDo.setAtTime(new Date());
+        msgInfoDo.setMsg(commandDo.getJsonMsg());
+        msgInfoDo.setPrivateMsg(commandDo.getJsonMsg());
+        msgInfoDo.setMsgCode(commandDo.getMessageType().getCode());
+        msgInfoDo.setMsgCodeName(commandDo.getMessageType().getName());
+        msgInfoDo.setMsgType(1);
+        msgInfoDo.setJsonText(mapper.writeValueAsString(messageDo));
+        messageService.addMessage(msgInfoDo);
         return messageDo;
     }
 
@@ -169,9 +177,12 @@ public class CommandServiceImpl implements CommandService{
 
     @Override
     public BizResult readTemplate(TemplateDo templateDo) {
+        Date now = new Date();
         //read template
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         templateDo = templateService.get(templateDo);
-        String teminalId= templateDo.getParam1();
+        String teminalId= templateDo.getParam1().trim();
         TerminalDo terminalDo = new TerminalDo();
         terminalDo.setId(teminalId);
         //create command
@@ -179,9 +190,68 @@ public class CommandServiceImpl implements CommandService{
         cmd.setStatus(0);
         cmd.setMessageType(templateDo.getMessageType());
         cmd.setTerminal(terminalDo);
+        cmd.setTime(now);
+        add(cmd);
+        String param2 = templateDo.getParam2().trim();
+        String[] param2s = param2.split(",");
+        Map<String,Object> msgMap = new HashMap<>();
+        msgMap.put("cmd_id",cmd.getId());
+        for(String item : param2s){
+            try {
+                String[] kvs = item.split("=");
+                msgMap.put(kvs[0],kvs[1]);
+            }catch (Exception e){
+                log.error(e.getMessage(),e);
+                return BizResult.error(e.getMessage());
+            }
+        }
+        try {
+            String jsonMsg = mapper.writeValueAsString(msgMap);
+            cmd.setJsonMsg(jsonMsg);
 
-
-
-        return null;
+            modify(cmd);
+            //create message
+            Calendar c = Calendar.getInstance();
+            long sq = c.get(Calendar.HOUR_OF_DAY)*3600+c.get(Calendar.MINUTE)*60+c.get(Calendar.SECOND);
+            MessageDo messageDo = new MessageDo();
+            messageDo.setCv(Double.parseDouble(systemConfigService.findByCode("cv").getValue()));
+            messageDo.setSv(Double.parseDouble(systemConfigService.findByCode("sv").getValue()));
+            messageDo.setSq(sq);
+            messageDo.setMid(cmd.getMessageType().getCode());
+            messageDo.setSid("000000000000");
+            messageDo.setLife(-1);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            messageDo.setTs(sdf.format(cmd.getTime()));
+            messageDo.setMsg(cmd.getJsonMsg());
+            messageDo.Encrypt(systemConfigService.findByCode("keyt").getValue());
+            String jsonText = mapper.writeValueAsString(messageDo);
+            //step 2 保存交易记录
+            MsgInfoDo msgInfoDo = new MsgInfoDo();
+            msgInfoDo.setTerminalId(teminalId);
+            msgInfoDo.setLife(-1);
+            msgInfoDo.setSq(sq);
+            msgInfoDo.setAtTime(cmd.getTime());
+            msgInfoDo.setMsg(cmd.getJsonMsg());
+            msgInfoDo.setPrivateMsg(cmd.getJsonMsg());
+            msgInfoDo.setMsgCode(cmd.getMessageType().getCode());
+            msgInfoDo.setMsgCodeName(cmd.getMessageType().getName());
+            msgInfoDo.setMsgType(1);
+            msgInfoDo.setJsonText(jsonText);
+            messageService.addMessage(msgInfoDo);
+            log.info("start sending command :"+cmd.getId());
+            ChannelHandlerContext ctx = CommonConstant.udp_link.get(msgInfoDo.getTerminalId());
+            if(ctx != null){
+                DatagramPacket dp = new DatagramPacket(Unpooled.copiedBuffer((mapper.writeValueAsString(messageDo)+"###").getBytes()),new InetSocketAddress(terminalDo.getIp(),terminalDo.getPort()));
+                ctx.writeAndFlush(dp);
+                cmd.setStatus(1);
+                modify(cmd);
+            }else{
+                return BizResult.error("设备离线");
+            }
+        }catch (Exception e){
+            log.error(e.getMessage(),e);
+            return BizResult.error(e.getMessage());
+        }
+        return BizResult.success();
     }
 }
