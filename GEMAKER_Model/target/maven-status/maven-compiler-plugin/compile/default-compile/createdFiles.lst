@@ -14,6 +14,7 @@ com\mogu\GEMAKER\model\params\AdminPassPara.class
 com\mogu\GEMAKER\util\Signature$NameValue.class
 com\mogu\GEMAKER\model\entity\SensorTypeDo.class
 com\mogu\GEMAKER\model\common\SystemConfig.class
+com\mogu\GEMAKER\model\params\TemplatePara.class
 com\mogu\GEMAKER\model\entity\AdminUserDo.class
 com\mogu\GEMAKER\model\params\ExportResultDo.class
 com\mogu\GEMAKER\constants\CommonConstant.class

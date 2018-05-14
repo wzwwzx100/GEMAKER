@@ -21,3 +21,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 .idea/*
+.idea/workspace.xml
+.idea/workspace.xml
+GEMAKER_Api/GEMAKER_Api.iml
+GEMAKER_Api/target/maven-archiver/pom.properties
+GEMAKER_Api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+GEMAKER_Api/GEMAKER_Api.iml
+*.lst

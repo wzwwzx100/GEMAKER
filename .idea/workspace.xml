@@ -10,11 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b064903f-fe5b-403a-b626-f00dd17ecdab" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/GEMAKER_Api/GEMAKER_Api.iml" afterPath="$PROJECT_DIR$/GEMAKER_Api/GEMAKER_Api.iml" />
-      <change beforePath="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java" afterPath="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/UDPClient.java" afterPath="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/UDPClient.java" />
-      <change beforePath="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPClientHandler.java" afterPath="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPClientHandler.java" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Api/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/GEMAKER_Api/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Dao/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/GEMAKER_Dao/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Model/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/GEMAKER_Model/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Service/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/GEMAKER_Service/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/GEMAKER_Service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/GEMAKER_Service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
     </list>
     <ignored path="$PROJECT_DIR$/VOTE_Model/target/" />
     <ignored path="$PROJECT_DIR$/VOTE_Service/target/" />
@@ -38,36 +46,127 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TerminalDo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/TerminalDo.java">
+      <file leaf-file-name="CommandServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="21" />
+            <state relative-caret-position="3857">
+              <caret line="231" column="25" lean-forward="false" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
               <folding>
-                <element signature="e#333#334#0" expanded="true" />
-                <element signature="e#362#363#0" expanded="true" />
-                <element signature="e#406#407#0" expanded="true" />
-                <element signature="e#442#443#0" expanded="true" />
+                <element signature="e#7289#7290#0" expanded="true" />
+                <element signature="e#7350#7351#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TerminalDoMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/TerminalDoMapper.xml">
+      <file leaf-file-name="CommandDoMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+            <state relative-caret-position="228">
+              <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java">
+      <file leaf-file-name="UDPServerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state relative-caret-position="3743">
+              <caret line="236" column="74" lean-forward="false" selection-start-line="236" selection-start-column="74" selection-end-line="236" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TerminalService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/TerminalService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="33" column="53" lean-forward="false" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TerminalServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="344" column="26" lean-forward="true" selection-start-line="344" selection-start-column="26" selection-end-line="344" selection-end-column="26" />
+              <folding>
+                <element signature="e#9228#9229#0" expanded="true" />
+                <element signature="e#9286#9287#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandDoMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2128">
+              <caret line="112" column="14" lean-forward="false" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
+              <folding>
+                <marker date="1525926146253" expanded="true" signature="1662:1703" ph="select * fro... tbl_terminal" />
+                <marker date="1525926146253" expanded="true" signature="2007:2047" ph="select * fro... tbl_product" />
+                <marker date="1525926146253" expanded="true" signature="2771:2815" ph="select * fro... tbl_application" />
+                <marker date="1525926146253" expanded="true" signature="3415:3452" ph="select * fro... tbl_type" />
+                <marker date="1525926146253" expanded="true" signature="4940:5218" ph="update tbl_command... " />
+                <marker date="1525926146253" expanded="true" signature="5269:5321" ph="update tbl_command... " />
+                <marker date="1525926146253" expanded="true" signature="5423:5480" ph="DELETE FROM tbl_command" />
+                <marker date="1525926146253" expanded="true" signature="5720:5792" ph="SELECT id fr... tbl_terminal" />
+                <marker date="1525926146253" expanded="true" signature="5945:6025" ph="SELECT id fr... tbl_terminal" />
+                <marker date="1525926146253" expanded="true" signature="6369:6411" ph="select * fro... tbl_command" />
+                <marker date="1525926146253" expanded="true" signature="6491:6566" ph="select * fro... tbl_command" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeviceCtrl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/DeviceCtrl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3610">
+              <caret line="215" column="44" lean-forward="false" selection-start-line="215" selection-start-column="36" selection-end-line="215" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DowndataParam.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Model/src/main/java/com/mogu/GEMAKER/model/params/DowndataParam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <element signature="e#389#390#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
+                <element signature="e#475#476#0" expanded="true" />
+                <element signature="e#507#508#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandCtrl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/CommandCtrl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="67" />
+              <folding>
+                <element signature="e#880#881#0" expanded="true" />
+                <element signature="e#949#950#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/CommandService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -85,9 +184,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TerminalResultMap</find>
-      <find>ResultDo</find>
-      <find>AaseResultMap</find>
       <find>product</find>
       <find>pagehelper</find>
       <find>reasonable</find>
@@ -102,11 +198,9 @@
       <find>getDevice</find>
       <find>/get</find>
       <find>typere</find>
-      <find>success</find>
       <find>心跳应答</find>
       <find>findByCode</find>
       <find>message_type</find>
-      <find>lst</find>
       <find>datatype</find>
       <find>get</find>
       <find>BaseResultMap</find>
@@ -115,6 +209,11 @@
       <find>OUT</find>
       <find>netty</find>
       <find>Base_Column_List</find>
+      <find>dis</find>
+      <find>lst</find>
+      <find>success</find>
+      <find>down</find>
+      <find>cmd_id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,25 +227,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/DataDoMapper.xml" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/SensorDo.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/SensorService.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/SensorDoMapper.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/SensorServiceImpl.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/DataService.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DataServiceImpl.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/SensorDoMapper.xml" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/ProductDoMapper.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/ApplicationDoMapper.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/BaseTypeService.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/BaseTypeDoMapper.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/DeviceTypeDo.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/MessageTypeDoMapper.xml" />
-        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/CommandService.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/MessageTypeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.xml" />
-        <option value="$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/CommandCtrl.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/MessageDoMapper.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/MessageService.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/MessageDoMapper.xml" />
@@ -163,8 +255,6 @@
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/MarketServiceImpl.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/ApplicationDoMapper.xml" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/MessageServiceImpl.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/TerminalService.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/DeviceCtrl.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/ResultService.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/ResultDoMapper.java" />
@@ -174,11 +264,20 @@
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/ResultDo.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/TemplateDo.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/TemplateDoMapper.java" />
-        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/Test.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/TerminalDo.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/TerminalDoMapper.xml" />
+        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/SensorDoMapper.xml" />
+        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DataServiceImpl.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/CommandCtrl.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/TerminalService.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/CommandService.java" />
         <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.xml" />
+        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java" />
+        <option value="$PROJECT_DIR$/GEMAKER_Model/src/main/java/com/mogu/GEMAKER/model/params/DowndataParam.java" />
       </list>
     </option>
   </component>
@@ -218,7 +317,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -228,7 +327,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -241,211 +340,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GEMAKER" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GEMAKER" type="462c0819:PsiDirectoryNode" />
-              <item name="GEMAKER_Service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -731,15 +626,20 @@
       <workItem from="1522372543049" duration="6745000" />
       <workItem from="1522632317766" duration="11632000" />
       <workItem from="1522718058379" duration="3427000" />
-      <workItem from="1525774228580" duration="20000" />
+      <workItem from="1525774228580" duration="45000" />
+      <workItem from="1525831386828" duration="1190000" />
+      <workItem from="1525834527523" duration="8712000" />
+      <workItem from="1525913198941" duration="11179000" />
+      <workItem from="1526000272286" duration="2782000" />
+      <workItem from="1526260178203" duration="1520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="515857000" />
+    <option name="totallyTimeSpent" value="541265000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -759,10 +659,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266385" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -771,7 +671,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266385" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5167038" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -791,16 +691,16 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54462475" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5443975" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266385" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3266385" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5167038" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -834,24 +734,6 @@
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java</url>
-          <line>173</line>
-          <properties />
-          <option name="timeStamp" value="189" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java</url>
-          <line>186</line>
-          <properties />
-          <option name="timeStamp" value="213" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java</url>
-          <line>138</line>
-          <properties />
-          <option name="timeStamp" value="218" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DeviceTypeServiceImpl.java</url>
           <line>31</line>
           <properties />
@@ -877,15 +759,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java</url>
-          <line>368</line>
+          <line>357</line>
           <properties />
           <option name="timeStamp" value="233" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java</url>
-          <line>401</line>
-          <properties />
-          <option name="timeStamp" value="236" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java</url>
@@ -899,11 +775,29 @@
           <properties />
           <option name="timeStamp" value="241" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java</url>
+          <line>76</line>
+          <properties />
+          <option name="timeStamp" value="246" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java</url>
+          <line>352</line>
+          <properties />
+          <option name="timeStamp" value="247" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java</url>
+          <line>339</line>
+          <properties />
+          <option name="timeStamp" value="248" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="242" />
+      <option name="time" value="249" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -957,62 +851,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/DataTypeDoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="74" column="13" lean-forward="false" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/MessageTypeDoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="87" column="13" lean-forward="false" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/SensorTypeDoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1216">
-          <caret line="64" column="13" lean-forward="false" selection-start-line="62" selection-start-column="7" selection-end-line="64" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DataTypeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="54" column="62" lean-forward="false" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DeviceTypeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/DeviceTypeDoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="68" column="13" lean-forward="false" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/ProductDoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GEMAKER_Model/src/main/java/com/mogu/GEMAKER/util/WebResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -1031,7 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1039,7 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,7 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="24" column="31" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,9 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1102">
           <caret line="71" column="104" lean-forward="false" selection-start-line="71" selection-start-column="104" selection-end-line="71" selection-end-column="104" />
-          <folding>
-            <element signature="e#806#807#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1073,7 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="896">
           <caret line="96" column="33" lean-forward="false" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1103,27 +934,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DataServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/TerminalService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/ResultService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1131,14 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/DeviceCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1153,46 +959,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="152" column="57" lean-forward="false" selection-start-line="152" selection-start-column="55" selection-end-line="152" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="187" column="46" lean-forward="false" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/CommandService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/CommandCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="37" column="48" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2147">
-          <caret line="113" column="45" lean-forward="false" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1200,7 +966,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="40" lean-forward="false" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,12 +973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="e#412#413#0" expanded="false" />
-            <element signature="e#440#441#0" expanded="false" />
-            <element signature="e#483#484#0" expanded="false" />
-            <element signature="e#517#518#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1228,31 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="e#288#289#0" expanded="false" />
-            <element signature="e#328#329#0" expanded="false" />
-            <element signature="e#360#361#0" expanded="false" />
-            <element signature="e#405#406#0" expanded="false" />
-            <element signature="e#439#440#0" expanded="false" />
-            <element signature="e#500#501#0" expanded="false" />
-            <element signature="e#546#547#0" expanded="false" />
-            <element signature="e#579#580#0" expanded="false" />
-            <element signature="e#608#609#0" expanded="false" />
-            <element signature="e#652#653#0" expanded="false" />
-            <element signature="e#688#689#0" expanded="false" />
-            <element signature="e#721#722#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#794#795#0" expanded="false" />
-            <element signature="e#830#831#0" expanded="false" />
-            <element signature="e#863#864#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#936#937#0" expanded="false" />
-            <element signature="e#972#973#0" expanded="false" />
-            <element signature="e#1005#1006#0" expanded="false" />
-            <element signature="e#1034#1035#0" expanded="false" />
-            <element signature="e#1078#1079#0" expanded="false" />
-            <element signature="e#1114#1115#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1260,9 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1270,7 +1001,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1278,7 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1293,7 +1022,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1301,7 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
           <caret line="48" column="48" lean-forward="true" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,7 +1036,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
           <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1317,7 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1361,40 +1086,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java">
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Model/src/main/java/com/mogu/GEMAKER/model/entity/MessageDo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="76" column="37" lean-forward="false" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="228">
+          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/SensorDoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/SensorDoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2698">
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/entity/TerminalDo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="0">
           <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#362#363#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#442#443#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/TerminalDoMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DataServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="31" column="55" lean-forward="true" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/DataTypeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="54" column="62" lean-forward="false" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/SensorServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3-sources.jar!/com/fasterxml/jackson/databind/ObjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="55" column="13" lean-forward="false" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/CommandCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="67" />
+          <folding>
+            <element signature="e#880#881#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/TerminalService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="33" column="53" lean-forward="false" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/CommandService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/net/handler/UDPServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3743">
+          <caret line="236" column="74" lean-forward="false" selection-start-line="236" selection-start-column="74" selection-end-line="236" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Api/src/main/java/com/mogu/GEMAKER/api/action/DeviceCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3610">
+          <caret line="215" column="44" lean-forward="false" selection-start-line="215" selection-start-column="36" selection-end-line="215" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/java/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/CommandServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="3857">
+          <caret line="231" column="25" lean-forward="false" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
+          <folding>
+            <element signature="e#7289#7290#0" expanded="true" />
+            <element signature="e#7350#7351#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Dao/src/main/resources/com/mogu/GEMAKER/dao/mapper/CommandDoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2128">
+          <caret line="112" column="14" lean-forward="false" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
+          <folding>
+            <marker date="1525926146253" expanded="true" signature="1662:1703" ph="select * fro... tbl_terminal" />
+            <marker date="1525926146253" expanded="true" signature="2007:2047" ph="select * fro... tbl_product" />
+            <marker date="1525926146253" expanded="true" signature="2771:2815" ph="select * fro... tbl_application" />
+            <marker date="1525926146253" expanded="true" signature="3415:3452" ph="select * fro... tbl_type" />
+            <marker date="1525926146253" expanded="true" signature="4940:5218" ph="update tbl_command... " />
+            <marker date="1525926146253" expanded="true" signature="5269:5321" ph="update tbl_command... " />
+            <marker date="1525926146253" expanded="true" signature="5423:5480" ph="DELETE FROM tbl_command" />
+            <marker date="1525926146253" expanded="true" signature="5720:5792" ph="SELECT id fr... tbl_terminal" />
+            <marker date="1525926146253" expanded="true" signature="5945:6025" ph="SELECT id fr... tbl_terminal" />
+            <marker date="1525926146253" expanded="true" signature="6369:6411" ph="select * fro... tbl_command" />
+            <marker date="1525926146253" expanded="true" signature="6491:6566" ph="select * fro... tbl_command" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Model/src/main/java/com/mogu/GEMAKER/model/params/DowndataParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GEMAKER_Service/src/main/java/com/mogu/GEMAKER/service/impl/TerminalServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="344" column="26" lean-forward="true" selection-start-line="344" selection-start-column="26" selection-end-line="344" selection-end-column="26" />
+          <folding>
+            <element signature="e#9228#9229#0" expanded="true" />
+            <element signature="e#9286#9287#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

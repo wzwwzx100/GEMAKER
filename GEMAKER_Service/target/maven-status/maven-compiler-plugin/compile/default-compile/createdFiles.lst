@@ -21,7 +21,9 @@ com\mogu\GEMAKER\service\SensorService.class
 com\mogu\GEMAKER\service\impl\SystemConfigServiceImpl.class
 com\mogu\GEMAKER\service\net\handler\UDPClientHandler.class
 com\mogu\GEMAKER\service\net\UDPClient.class
+com\mogu\GEMAKER\service\TemplateService.class
 com\mogu\GEMAKER\service\MarketService.class
+com\mogu\GEMAKER\service\net\UDPClient$1.class
 com\mogu\GEMAKER\service\impl\DataServiceImpl.class
 com\mogu\GEMAKER\service\impl\DeviceTypeServiceImpl.class
 com\mogu\GEMAKER\service\impl\SmsServiceImpl.class
@@ -32,4 +34,5 @@ com\mogu\GEMAKER\service\net\handler\UDPServerHandler$2.class
 com\mogu\GEMAKER\service\RedisService.class
 com\mogu\GEMAKER\service\impl\RedisServiceImpl.class
 com\mogu\GEMAKER\service\SystemConfigService.class
+com\mogu\GEMAKER\service\impl\TemplateServiceImpl.class
 com\mogu\GEMAKER\service\ResultService.class
