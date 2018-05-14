@@ -1,7 +1,7 @@
 package com.mogu.GEMAKER.service.impl;
 
 import com.mogu.GEMAKER.dao.mapper.SensorDoMapper;
-import com.mogu.GEMAKER.entity.SensorDo;
+import com.mogu.GEMAKER.model.entity.SensorDo;
 import com.mogu.GEMAKER.service.SensorService;
 import com.mogu.GEMAKER.util.BizResult;
 import org.springframework.beans.factory.annotation.Autowired;

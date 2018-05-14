@@ -1,4 +1,6 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.params;
+
+import com.mogu.GEMAKER.model.entity.MsgInfoDo;
 
 import java.util.Date;
 

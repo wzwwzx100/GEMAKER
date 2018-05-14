@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.api.action;
 
-import com.mogu.GEMAKER.entity.*;
+import com.mogu.GEMAKER.model.entity.*;
 import com.mogu.GEMAKER.service.BaseTypeService;
 import com.mogu.GEMAKER.service.MarketService;
 import com.mogu.GEMAKER.util.WebResult;

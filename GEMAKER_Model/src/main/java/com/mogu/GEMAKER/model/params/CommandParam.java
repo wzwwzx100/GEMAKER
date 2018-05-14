@@ -1,17 +1,10 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.params;
 
-public class TerminalParam extends TerminalDo{
-    private Long time;
+import com.mogu.GEMAKER.model.entity.CommandDo;
+
+public class CommandParam extends CommandDo {
     private Integer pageSize;
     private Integer pageNum;
-
-    public Long getTime() {
-        return time;
-    }
-
-    public void setTime(Long time) {
-        this.time = time;
-    }
 
     public Integer getPageSize() {
         return pageSize;

@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.DataDo;
+import com.mogu.GEMAKER.model.entity.DataDo;
 import org.springframework.stereotype.Repository;
 
 import javax.xml.crypto.Data;
@@ -14,6 +14,7 @@ public interface DataDoMapper {
     DataDo findById(Long id);
     int delete(DataDo dataDo);
 
+    List<DataDo> lstbyterminal(String terminal);
 
     int update(DataDo dataDo);
 }

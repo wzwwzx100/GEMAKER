@@ -1,6 +1,7 @@
 package com.mogu.GEMAKER.api.listener;
 
 import com.mogu.GEMAKER.service.MessageService;
+import com.mogu.GEMAKER.service.RedisService;
 import com.mogu.GEMAKER.service.ResultService;
 import com.mogu.GEMAKER.service.TerminalService;
 import com.mogu.GEMAKER.service.net.UDPServer;

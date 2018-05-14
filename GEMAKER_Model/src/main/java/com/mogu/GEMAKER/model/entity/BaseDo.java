@@ -1,4 +1,4 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.entity;
 
 import com.alibaba.fastjson.JSON;
 

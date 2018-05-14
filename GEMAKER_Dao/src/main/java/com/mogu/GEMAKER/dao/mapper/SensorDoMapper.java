@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.SensorDo;
+import com.mogu.GEMAKER.model.entity.SensorDo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +14,8 @@ public interface SensorDoMapper {
     List<SensorDo> lst(String terminal);
 
     int update(SensorDo sensorDo);
+
+    int disCount(SensorDo sensorDo);
 
     int delete(SensorDo sensorDo);
 }

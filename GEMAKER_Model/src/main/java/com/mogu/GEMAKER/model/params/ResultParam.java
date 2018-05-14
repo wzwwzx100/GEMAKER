@@ -1,6 +1,8 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.params;
 
-public class ResultParam extends  ResultDo {
+import com.mogu.GEMAKER.model.entity.ResultDo;
+
+public class ResultParam extends ResultDo {
     private Integer pageSize;
     private Integer pageNum;
 

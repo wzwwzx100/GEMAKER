@@ -1,8 +1,8 @@
 package com.mogu.GEMAKER.service;
 
-import com.mogu.GEMAKER.entity.CommandDo;
-import com.mogu.GEMAKER.entity.MessageDo;
-import com.mogu.GEMAKER.entity.TerminalDo;
+import com.mogu.GEMAKER.model.entity.CommandDo;
+import com.mogu.GEMAKER.model.entity.MessageDo;
+import com.mogu.GEMAKER.model.entity.TerminalDo;
 import com.mogu.GEMAKER.util.BizResult;
 
 import java.util.List;
@@ -10,6 +10,8 @@ import java.util.List;
 public interface CommandService {
 
     BizResult add(CommandDo commandDo);
+
+    BizResult modify(CommandDo commandDo);
 
     BizResult success(Long id);
 

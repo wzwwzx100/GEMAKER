@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mogu.GEMAKER.Enum.ResultCode;
 import com.mogu.GEMAKER.dao.mapper.SensorTypeDoMapper;
-import com.mogu.GEMAKER.entity.BaseTypeDo;
+import com.mogu.GEMAKER.model.entity.BaseTypeDo;
 import com.mogu.GEMAKER.service.BaseTypeService;
 import com.mogu.GEMAKER.util.BizResult;
 import org.springframework.beans.factory.annotation.Autowired;

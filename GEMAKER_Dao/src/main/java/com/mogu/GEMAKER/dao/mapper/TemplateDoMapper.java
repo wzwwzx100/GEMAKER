@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.TemplateDo;
+import com.mogu.GEMAKER.model.entity.TemplateDo;
 import com.mogu.GEMAKER.util.BizResult;
 
 public interface TemplateDoMapper {

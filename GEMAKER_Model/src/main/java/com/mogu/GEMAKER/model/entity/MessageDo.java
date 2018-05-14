@@ -1,4 +1,4 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.entity;
 
 import com.mogu.GEMAKER.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;

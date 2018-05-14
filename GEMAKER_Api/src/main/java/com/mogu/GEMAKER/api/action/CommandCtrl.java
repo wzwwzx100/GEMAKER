@@ -1,9 +1,8 @@
 package com.mogu.GEMAKER.api.action;
 
-import com.mogu.GEMAKER.dao.mapper.SensorDoMapper;
-import com.mogu.GEMAKER.entity.CommandDo;
-import com.mogu.GEMAKER.entity.CommandParam;
-import com.mogu.GEMAKER.entity.TerminalDo;
+import com.mogu.GEMAKER.model.entity.CommandDo;
+import com.mogu.GEMAKER.model.params.CommandParam;
+import com.mogu.GEMAKER.model.entity.TerminalDo;
 import com.mogu.GEMAKER.service.CommandService;
 import com.mogu.GEMAKER.util.BizResult;
 import com.mogu.GEMAKER.util.WebResult;

@@ -1,4 +1,4 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.entity;
 
 public class ProductDo {
     private Integer id;

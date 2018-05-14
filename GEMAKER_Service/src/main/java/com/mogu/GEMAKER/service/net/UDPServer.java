@@ -1,6 +1,7 @@
 package com.mogu.GEMAKER.service.net;
 
 import com.mogu.GEMAKER.service.MessageService;
+import com.mogu.GEMAKER.service.RedisService;
 import com.mogu.GEMAKER.service.ResultService;
 import com.mogu.GEMAKER.service.TerminalService;
 import com.mogu.GEMAKER.service.net.handler.UDPServerHandler;
@@ -15,7 +16,6 @@ public class UDPServer {
     private final TerminalService terminalService;
     private final MessageService messageService;
     private final ResultService resultService;
-
 
     public UDPServer(TerminalService terminalService, MessageService messageService,ResultService resultService) {
         this.terminalService = terminalService;

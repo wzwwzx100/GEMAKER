@@ -2,29 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.CommandDoMapper" >
 
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.CommandDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.CommandDo" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="time" property="time" jdbcType="TIMESTAMP" />
         <result column="status" property="status" jdbcType="VARCHAR" />
         <result column="json_msg" property="jsonMsg" jdbcType="VARCHAR" />
-        <association property="messageType" column="message_type" javaType="com.mogu.GEMAKER.entity.MessageTypeDo" select="queryType"/>
-        <association property="terminal" column="terminal" javaType="com.mogu.GEMAKER.entity.TerminalDo" select="queryTerminal"/>
+        <association property="messageType" column="message_type" javaType="com.mogu.GEMAKER.model.entity.MessageTypeDo" select="queryType"/>
+        <association property="terminal" column="terminal" javaType="com.mogu.GEMAKER.model.entity.TerminalDo" select="queryTerminal"/>
     </resultMap>
 
-    <resultMap id="TerminalResultMap" type="com.mogu.GEMAKER.entity.TerminalDo" >
+    <resultMap id="TerminalResultMap" type="com.mogu.GEMAKER.model.entity.TerminalDo" >
         <result column="id" property="id" jdbcType="VARCHAR" />
         <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
         <result column="ip" property="ip" jdbcType="VARCHAR" />
         <result column="port" property="port" jdbcType="INTEGER" />
         <result column="keyt" property="keyt" jdbcType="VARCHAR" />
-        <association property="product" column="product" javaType="com.mogu.GEMAKER.entity.ProductDo" select="queryProduct"/>
-        <association property="application" column="application" javaType="com.mogu.GEMAKER.entity.ApplicationDo" select="queryApp"/>
+        <association property="product" column="product" javaType="com.mogu.GEMAKER.model.entity.ProductDo" select="queryProduct"/>
+        <association property="application" column="application" javaType="com.mogu.GEMAKER.model.entity.ApplicationDo" select="queryApp"/>
     </resultMap>
     <select id="queryTerminal" resultMap="TerminalResultMap" >
         select * from tbl_terminal where id =#{0}
     </select>
 
-    <resultMap id="productMap" type="com.mogu.GEMAKER.entity.ProductDo" >
+    <resultMap id="productMap" type="com.mogu.GEMAKER.model.entity.ProductDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
     </resultMap>
@@ -32,7 +32,7 @@
         select * from tbl_product where id =#{0}
     </select>
 
-    <resultMap id="AppMap" type="com.mogu.GEMAKER.entity.ApplicationDo" >
+    <resultMap id="AppMap" type="com.mogu.GEMAKER.model.entity.ApplicationDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="address" property="address" jdbcType="VARCHAR" />
@@ -47,7 +47,7 @@
     </select>
 
 
-    <resultMap id="MessageTypeMap" type="com.mogu.GEMAKER.entity.MessageTypeDo" >
+    <resultMap id="MessageTypeMap" type="com.mogu.GEMAKER.model.entity.MessageTypeDo" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="code" property="code" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
@@ -60,7 +60,7 @@
     </select>
 
 
-    <insert id="add" parameterType="com.mogu.GEMAKER.entity.CommandDo" >
+    <insert id="add" parameterType="com.mogu.GEMAKER.model.entity.CommandDo" >
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -101,12 +101,24 @@
         </trim>
     </insert>
 
+    <update id="modify" parameterType="com.mogu.GEMAKER.model.entity.CommandDo">
+        update tbl_command
+        <set>
+            <if test="jsonMsg != null" >
+                json_msg = #{jsonMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+    </update>
+
 
     <update id="success" parameterType="java.lang.Long">
         update tbl_command set status = 1 WHERE id = #{0}
     </update>
 
-    <delete id="del" parameterType="com.mogu.GEMAKER.entity.CommandDo">
+    <delete id="del" parameterType="com.mogu.GEMAKER.model.entity.CommandDo">
         DELETE  FROM tbl_command where id = #{id,jdbcType=BIGINT}
     </delete>
 

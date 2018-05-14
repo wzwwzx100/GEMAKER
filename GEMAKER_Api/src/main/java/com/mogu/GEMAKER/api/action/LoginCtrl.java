@@ -3,7 +3,7 @@ package com.mogu.GEMAKER.api.action;
 import com.mogu.GEMAKER.Enum.ResultCode;
 import com.mogu.GEMAKER.constants.CommonConstant;
 import com.mogu.GEMAKER.model.params.*;
-import com.mogu.GEMAKER.entity.AdminUserDo;
+import com.mogu.GEMAKER.model.entity.AdminUserDo;
 import com.mogu.GEMAKER.service.AdminUserService;
 import com.mogu.GEMAKER.util.BizResult;
 import com.mogu.GEMAKER.util.WebResult;

@@ -1,7 +1,7 @@
 package com.mogu.GEMAKER.service.net;
 
-import com.mogu.GEMAKER.entity.CommandDo;
-import com.mogu.GEMAKER.entity.MessageDo;
+import com.mogu.GEMAKER.model.entity.CommandDo;
+import com.mogu.GEMAKER.model.entity.MessageDo;
 import com.mogu.GEMAKER.service.net.handler.UDPClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;

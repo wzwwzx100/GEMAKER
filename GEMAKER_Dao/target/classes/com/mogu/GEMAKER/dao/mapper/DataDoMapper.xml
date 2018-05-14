@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mogu.GEMAKER.dao.mapper.DataDoMapper" >
 
-    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.entity.DataDo" >
+    <resultMap id="BaseResultMap" type="com.mogu.GEMAKER.model.entity.DataDo" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="sensor" property="sensor" jdbcType="BIGINT" />
         <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
-        <association property="deviceType"  javaType="com.mogu.GEMAKER.entity.DeviceTypeDo">
+        <association property="deviceType"  javaType="com.mogu.GEMAKER.model.entity.DeviceTypeDo">
             <id column="device_type_id"  property="id"/>
             <result column="device_type_code" property="code"/>
             <result column="device_type_name" property="name"/>
         </association>
-        <association property="dataType"  javaType="com.mogu.GEMAKER.entity.DataTypeDo">
+        <association property="dataType"  javaType="com.mogu.GEMAKER.model.entity.DataTypeDo">
             <id column="data_type_id"  property="id"/>
             <result column="data_type_code" property="code"/>
             <result column="data_type_name" property="name"/>
@@ -24,7 +24,7 @@
 
 
 
-    <insert id="register" parameterType="com.mogu.GEMAKER.entity.DataDo" >
+    <insert id="register" parameterType="com.mogu.GEMAKER.model.entity.DataDo" >
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -71,7 +71,7 @@
 
 
 
-    <delete id="delete" parameterType="com.mogu.GEMAKER.entity.DataDo">
+    <delete id="delete" parameterType="com.mogu.GEMAKER.model.entity.DataDo">
         DELETE  FROM tbl_data where id = #{id,jdbcType=BIGINT}
     </delete>
 
@@ -86,8 +86,18 @@
         where d.id = #{id,jdbcType=BIGINT}
     </select>
 
+    <select id="lstbyterminal" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        d.id, d.sensor, d.last_time,device.id as device_type_id,device.code as device_type_code,device.name as device_type_name ,`data`.id as data_type_id ,`data`.code as data_type_code,`data`.name as data_type_name
+        from tbl_data d
+        LEFT JOIN tbl_type device on d.device_type = device.id
+        LEFT JOIN tbl_type `data` on d.data_type = `data`.id
+        where sensor in (
+        select id from tbl_sensor where terminal = #{terminal,jdbcType=VARCHAR})
+    </select>
 
-    <update id="update" parameterType="com.mogu.GEMAKER.entity.DataDo" >
+
+    <update id="update" parameterType="com.mogu.GEMAKER.model.entity.DataDo" >
         update tbl_data
         <set >
             <if test="deviceType != null" >

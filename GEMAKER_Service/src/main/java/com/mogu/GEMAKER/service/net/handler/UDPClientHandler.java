@@ -1,6 +1,6 @@
 package com.mogu.GEMAKER.service.net.handler;
 
-import com.mogu.GEMAKER.entity.CommandDo;
+import com.mogu.GEMAKER.model.entity.CommandDo;
 import com.mogu.GEMAKER.service.CommandService;
 import com.mogu.GEMAKER.service.net.UDPClient;
 import io.netty.channel.ChannelHandlerContext;

@@ -1,9 +1,7 @@
 package com.mogu.GEMAKER.dao.mapper;
 
-import com.mogu.GEMAKER.entity.TerminalDo;
-import com.mogu.GEMAKER.entity.TerminalParam;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import com.mogu.GEMAKER.model.entity.TerminalDo;
+import com.mogu.GEMAKER.model.params.TerminalParam;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

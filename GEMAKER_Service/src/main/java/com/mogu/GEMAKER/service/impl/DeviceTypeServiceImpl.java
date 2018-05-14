@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mogu.GEMAKER.Enum.ResultCode;
 import com.mogu.GEMAKER.dao.mapper.DeviceTypeDoMapper;
-import com.mogu.GEMAKER.entity.BaseTypeDo;
+import com.mogu.GEMAKER.model.entity.BaseTypeDo;
 import com.mogu.GEMAKER.service.BaseTypeService;
 import com.mogu.GEMAKER.util.BizResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class DeviceTypeServiceImpl implements BaseTypeService {
         if(pageNum == null || pageSize == null){
             return BizResult.success(deviceTypeDoMapper.lst(null));
         }
-        String orderBy = "id asc";
+        String orderBy = "id desc";
         PageHelper.startPage(pageNum,pageSize,orderBy);
         List<BaseTypeDo> lst = deviceTypeDoMapper.lst(baseTypeDo);
         PageInfo pageInfo = new PageInfo(lst);

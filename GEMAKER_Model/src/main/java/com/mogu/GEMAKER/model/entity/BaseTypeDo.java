@@ -1,4 +1,4 @@
-package com.mogu.GEMAKER.entity;
+package com.mogu.GEMAKER.model.entity;
 
 public abstract  class BaseTypeDo {
     private Integer id;

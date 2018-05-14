@@ -12,7 +12,7 @@
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <typeAliases>
-        <package name="com.mogu.GEMAKER.entity"/>
+        <package name="com.mogu.GEMAKER.model.entity"/>
         <package name="其它包"/>
     </typeAliases>
     <plugins>
